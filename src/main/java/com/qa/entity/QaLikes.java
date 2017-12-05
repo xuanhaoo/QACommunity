@@ -1,9 +1,6 @@
 package com.qa.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Date;
 
 /**
@@ -12,9 +9,20 @@ import java.sql.Date;
 @Entity
 @Table(name = "qa_likes", schema = "qacommunity", catalog = "")
 public class QaLikes {
+    private int id;
     private int cId;
     private int fuId;
     private Date createDate;
+
+    @Id
+    @Column(name = "id", nullable = false)
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Basic
     @Column(name = "c_id", nullable = false)
@@ -53,6 +61,7 @@ public class QaLikes {
 
         QaLikes qaLikes = (QaLikes) o;
 
+        if (id != qaLikes.id) return false;
         if (cId != qaLikes.cId) return false;
         if (fuId != qaLikes.fuId) return false;
         if (createDate != null ? !createDate.equals(qaLikes.createDate) : qaLikes.createDate != null) return false;
@@ -62,7 +71,8 @@ public class QaLikes {
 
     @Override
     public int hashCode() {
-        int result = cId;
+        int result = id;
+        result = 31 * result + cId;
         result = 31 * result + fuId;
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);
         return result;

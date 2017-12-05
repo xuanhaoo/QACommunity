@@ -1,9 +1,6 @@
 package com.qa.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Date;
 
 /**
@@ -12,9 +9,20 @@ import java.sql.Date;
 @Entity
 @Table(name = "qa_question_browse", schema = "qacommunity", catalog = "")
 public class QaQuestionBrowse {
+    private int id;
     private int qId;
     private int fuId;
     private Date browseDate;
+
+    @Id
+    @Column(name = "id", nullable = false)
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Basic
     @Column(name = "q_id", nullable = false)
@@ -53,6 +61,7 @@ public class QaQuestionBrowse {
 
         QaQuestionBrowse that = (QaQuestionBrowse) o;
 
+        if (id != that.id) return false;
         if (qId != that.qId) return false;
         if (fuId != that.fuId) return false;
         if (browseDate != null ? !browseDate.equals(that.browseDate) : that.browseDate != null) return false;
@@ -62,7 +71,8 @@ public class QaQuestionBrowse {
 
     @Override
     public int hashCode() {
-        int result = qId;
+        int result = id;
+        result = 31 * result + qId;
         result = 31 * result + fuId;
         result = 31 * result + (browseDate != null ? browseDate.hashCode() : 0);
         return result;
