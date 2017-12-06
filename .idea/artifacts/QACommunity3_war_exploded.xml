@@ -46,7 +46,6 @@
           <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.7.0" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.0.5" />
           <element id="library" level="project" name="Maven: c3p0:c3p0:0.9.1.2" />
-          <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.5" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="QACommunity3/web/Web" />

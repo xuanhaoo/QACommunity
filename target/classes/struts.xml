@@ -21,7 +21,7 @@
                 <param name="root">msg</param>
             </result>
 
-            <result name="dashboard">/admin/dashboard.jsp</result>
+            <result name="dashboard">/admin/common/layout.jsp</result>
             <result name="userLogin">/admin/login.jsp</result>
         </action>
     </package>

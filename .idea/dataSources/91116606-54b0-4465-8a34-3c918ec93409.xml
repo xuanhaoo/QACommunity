@@ -81,6 +81,7 @@
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="39" parent="20" name="content">
       <Position>2</Position>
@@ -115,6 +116,7 @@
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
     <column id="46" parent="21" name="account">
       <Position>2</Position>
@@ -168,179 +170,216 @@
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="57" parent="22" name="to_id">
+    <column id="57" parent="22" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="58" parent="22" name="fu_id">
+    <column id="58" parent="22" name="to_id">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="59" parent="22" name="create_date">
+    <column id="59" parent="22" name="fu_id">
       <Position>3</Position>
-      <DataType>date|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="60" parent="23" name="l_id">
-      <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="61" parent="23" name="label_name">
-      <Position>2</Position>
-      <DataType>varchar(128)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="62" parent="23" name="remarks">
-      <Position>3</Position>
-      <DataType>varchar(255)|0</DataType>
-    </column>
-    <column id="63" parent="23" name="create_date">
+    <column id="60" parent="22" name="create_date">
       <Position>4</Position>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="64" parent="23" name="topic_id">
-      <Position>5</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="65" parent="23" name="sorted">
-      <Position>6</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <key id="66" parent="23" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>l_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="67" parent="24" name="c_id">
-      <Position>1</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="68" parent="24" name="fu_id">
-      <Position>2</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="69" parent="24" name="create_date">
-      <Position>3</Position>
-      <DataType>date|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="70" parent="25" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="71" parent="25" name="account">
-      <Position>2</Position>
-      <DataType>varchar(64)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="72" parent="25" name="type">
-      <Position>3</Position>
-      <DataType>tinyint(1)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="73" parent="25" name="create_ip">
-      <Position>4</Position>
-      <DataType>varchar(64)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="74" parent="25" name="create_date">
-      <Position>5</Position>
-      <DataType>date|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <key id="75" parent="25" name="PRIMARY">
+    <key id="61" parent="22" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="76" parent="26" name="q_id">
+    <column id="62" parent="23" name="l_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="77" parent="26" name="title">
+    <column id="63" parent="23" name="label_name">
+      <Position>2</Position>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="64" parent="23" name="remarks">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="65" parent="23" name="create_date">
+      <Position>4</Position>
+      <DataType>date|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="66" parent="23" name="topic_id">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="67" parent="23" name="sorted">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="68" parent="23" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>l_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="69" parent="24" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="70" parent="24" name="c_id">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="71" parent="24" name="fu_id">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="72" parent="24" name="create_date">
+      <Position>4</Position>
+      <DataType>date|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="73" parent="24" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="74" parent="25" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="75" parent="25" name="account">
+      <Position>2</Position>
+      <DataType>varchar(64)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="76" parent="25" name="type">
+      <Position>3</Position>
+      <DataType>tinyint(1)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="77" parent="25" name="create_ip">
+      <Position>4</Position>
+      <DataType>varchar(64)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="78" parent="25" name="create_date">
+      <Position>5</Position>
+      <DataType>date|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="79" parent="25" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="80" parent="26" name="q_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="81" parent="26" name="title">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="78" parent="26" name="detail">
+    <column id="82" parent="26" name="detail">
       <Position>3</Position>
       <DataType>text|0</DataType>
     </column>
-    <column id="79" parent="26" name="topic_id">
+    <column id="83" parent="26" name="topic_id">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="80" parent="26" name="label_ids">
+    <column id="84" parent="26" name="label_ids">
       <Position>5</Position>
       <DataType>varchar(128)|0</DataType>
     </column>
-    <column id="81" parent="26" name="create_date">
+    <column id="85" parent="26" name="create_date">
       <Position>6</Position>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="82" parent="26" name="create_user">
+    <column id="86" parent="26" name="create_user">
       <Position>7</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="83" parent="26" name="PRIMARY">
+    <key id="87" parent="26" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>q_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="84" parent="27" name="q_id">
+    <column id="88" parent="27" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="85" parent="27" name="fu_id">
+    <column id="89" parent="27" name="q_id">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="86" parent="27" name="browse_date">
+    <column id="90" parent="27" name="fu_id">
       <Position>3</Position>
-      <DataType>date|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="87" parent="28" name="to_id">
-      <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="88" parent="28" name="topic_name">
-      <Position>2</Position>
-      <DataType>varchar(128)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="89" parent="28" name="remarks">
-      <Position>3</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="90" parent="28" name="create_date">
+    <column id="91" parent="27" name="browse_date">
       <Position>4</Position>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="91" parent="28" name="sorted">
+    <key id="92" parent="27" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="93" parent="28" name="to_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="94" parent="28" name="topic_name">
+      <Position>2</Position>
+      <DataType>varchar(128)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="95" parent="28" name="remarks">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="96" parent="28" name="create_date">
+      <Position>4</Position>
+      <DataType>date|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="97" parent="28" name="sorted">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="92" parent="28" name="PRIMARY">
+    <key id="98" parent="28" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>to_id</ColNames>
       <Primary>1</Primary>
