@@ -24,6 +24,19 @@
             <result name="dashboard">/admin/common/layout.jsp</result>
             <result name="userLogin">/admin/login.jsp</result>
         </action>
+
+        <action name="qaBackLabel_*" class="QaBackLabelAction" method="{1}">
+            <result name="label_list">/admin/label/labelList.jsp</result>
+            <result name="addLabel">/admin/label/addLabel.jsp</result>
+            <result name="updateLabelView">/admin/label/editLabel.jsp</result>
+            <result name="success" type="json">
+                <param name="root">resultJson</param>
+            </result>
+            <!--<result name="input">/admin/label/labelList.jsp</result>-->
+        </action>
+        <action name="qaBackQues_*" class="QaBackQuesAction" method="{1}">
+            <result name="question_list">/admin/question/questionList.jsp</result>
+        </action>
     </package>
 
 </struts>

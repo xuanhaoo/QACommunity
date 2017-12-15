@@ -80,6 +80,7 @@
         </property>
     </bean>
 
+
     <!-- 用注解来实现事物管理 -->
     <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />

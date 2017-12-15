@@ -106,14 +106,14 @@
                 <li>
                     <a data-toggle="collapse" href="#formsExamples">
                         <i class="pe-7s-note2"></i>
-                        <p>Forms
+                        <p>社区管理
                             <b class="caret"></b>
                         </p>
                     </a>
                     <div class="collapse" id="formsExamples">
                         <ul class="nav">
-                            <li><a href="forms/regular.html">Regular Forms</a></li>
-                            <li><a href="forms/extended.html">Extended Forms</a></li>
+                            <li><a href="<%=basePath %>/admin/qaBackLabel_getAllLabel.action" target="iframepage">标签管理</a></li>
+                            <li><a href="<%=basePath %>/admin/qaBackQues_getAllQuestion.action" target="iframepage">内容管理</a></li>
                             <li><a href="forms/validation.html">Validation Forms</a></li>
                             <li><a href="forms/wizard.html">Wizard</a></li>
                         </ul>
