@@ -24,6 +24,17 @@
             <result name="dashboard">/admin/common/layout.jsp</result>
             <result name="userLogin">/admin/login.jsp</result>
         </action>
+
+        <action name="qaLog_*" class="com.qa.action.QaLogAction" method="{1}">
+            <result name="list" type="json">
+                <param name="root">info</param>
+            </result>
+            <result name="delete" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="logList">/admin/logRecord.jsp</result>
+        </action>
+
     </package>
 
 </struts>
