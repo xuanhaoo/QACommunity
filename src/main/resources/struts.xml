@@ -37,6 +37,17 @@
         <action name="qaBackQues_*" class="QaBackQuesAction" method="{1}">
             <result name="question_list">/admin/question/questionList.jsp</result>
         </action>
+
+        <action name="qaLog_*" class="com.qa.action.QaLogAction" method="{1}">
+            <result name="list" type="json">
+                <param name="root">info</param>
+            </result>
+            <result name="delete" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="logList">/admin/logRecord.jsp</result>
+        </action>
+
     </package>
 
 </struts>

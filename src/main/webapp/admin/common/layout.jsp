@@ -170,17 +170,13 @@
                 <li>
                     <a data-toggle="collapse" href="#pagesExamples">
                         <i class="pe-7s-gift"></i>
-                        <p>Pages
+                        <p>日志记录
                             <b class="caret"></b>
                         </p>
                     </a>
                     <div class="collapse" id="pagesExamples">
                         <ul class="nav">
-                            <li><a href="pages/login.html">Login Page</a></li>
-                            <li><a href="pages/register.html">Register Page</a></li>
-                            <li><a href="pages/lock.html">Lock Screen Page</a></li>
-                            <li><a href="pages/user.html">User Page</a></li>
-                            <li><a href="#">More coming soon...</a></li>
+                            <li><a href="<%=basePath%>/admin/qaLog_logList.action"  target="iframepage">日志管理</a></li>
                         </ul>
                     </div>
                 </li>
