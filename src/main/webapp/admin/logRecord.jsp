@@ -74,7 +74,7 @@
     </div>
     <%--时间显示模板--%>
     <script type="text/html" id="timeTpl">
-        //时间转化
+        <%--时间转化--%>
         {{#
         var date = new Date(d.createDate['time']).toLocaleDateString();
         var time = new Date(d.createDate['time']).toLocaleTimeString();
