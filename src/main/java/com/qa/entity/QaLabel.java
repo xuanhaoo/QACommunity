@@ -1,7 +1,7 @@
 package com.qa.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Create by xuanhao on 2017/12/5
@@ -16,13 +16,16 @@ public class QaLabel {
     private int topicId;
     private int sorted;
 
+
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)  //主键生成策略，自动生成
     @Column(name = "l_id", nullable = false)
-    public int getlId() {
+    public int getLId() {
         return lId;
     }
 
-    public void setlId(int lId) {
+    public void setLId(int lId) {
         this.lId = lId;
     }
 
@@ -47,7 +50,7 @@ public class QaLabel {
     }
 
     @Basic
-    @Column(name = "create_date", nullable = false)
+    @Column(name = "create_date", nullable = false, updatable=false)
     public Date getCreateDate() {
         return createDate;
     }

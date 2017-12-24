@@ -1,7 +1,8 @@
 package com.qa.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
+
 
 /**
  * Create by xuanhao on 2017/12/5
