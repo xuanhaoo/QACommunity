@@ -11,7 +11,7 @@
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 
 %>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -35,6 +35,10 @@
     <link type="text/css" href='<%=basePath %>/static/plugins/css/685fd913f1e14aebad0cc9d3713ee469.css' rel='stylesheet' />
     <link type="text/css" href="<%=basePath %>/static/plugins/css/pe-icon-7-stroke.css" rel="stylesheet" />
     <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
         #iframepage {
             /*min-height:900px;*/
         }
@@ -97,12 +101,6 @@
                     <div class="collapse" id="componentsExamples">
                         <ul class="nav">
                             <li><a href="../test2.jsp" target="iframepage">测试页面</a></li>
-                            <li><a href="components/grid.html">Grid System</a></li>
-                            <li><a href="components/icons.html">Icons</a></li>
-                            <li><a href="components/notifications.html">Notifications</a></li>
-                            <li><a href="components/panels.html">Panels</a></li>
-                            <li><a href="components/sweet-alert.html">Sweet Alert</a></li>
-                            <li><a href="components/typography.html">Typography</a></li>
                         </ul>
                     </div>
                 </li>
@@ -118,59 +116,9 @@
                         <ul class="nav">
                             <li><a href="<%=basePath %>/admin/qaBackLabel_getAllLabel.action" target="iframepage">标签管理</a></li>
                             <li><a href="<%=basePath %>/admin/qaBackQues_allQuestionView.action" target="iframepage">内容管理</a></li>
-                            <li><a href="forms/validation.html">Validation Forms</a></li>
-                            <li><a href="forms/wizard.html">Wizard</a></li>
                         </ul>
                     </div>
                 </li>
-
-                <li>
-                    <a data-toggle="collapse" href="#tablesExamples">
-                        <i class="pe-7s-news-paper"></i>
-                        <p>Tables
-                            <b class="caret"></b>
-                        </p>
-                    </a>
-                    <div class="collapse" id="tablesExamples">
-                        <ul class="nav">
-                            <li><a href="tables/regular.html">Regular Tables</a></li>
-                            <li><a href="tables/extended.html">Extended Tables</a></li>
-                            <li><a href="tables/bootstrap-table.html">Bootstrap Table</a></li>
-                            <li><a href="tables/datatables.net.html">DataTables.net</a></li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li>
-                    <a data-toggle="collapse" href="#mapsExamples">
-                        <i class="pe-7s-map-marker"></i>
-                        <p>Maps
-                            <b class="caret"></b>
-                        </p>
-                    </a>
-                    <div class="collapse" id="mapsExamples">
-                        <ul class="nav">
-                            <li><a href="maps/google.html">Google Maps</a></li>
-                            <li><a href="maps/vector.html">Vector Maps</a></li>
-                            <li><a href="maps/fullscreen.html">Full Screen Map</a></li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li>
-                    <a href="charts.html">
-                        <i class="pe-7s-graph1"></i>
-                        <p>Charts</p>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="calendar.html">
-                        <i class="pe-7s-date"></i>
-                        <p>Calendar</p>
-                    </a>
-                </li>
-
                 <li>
                     <a data-toggle="collapse" href="#pagesExamples">
                         <i class="pe-7s-gift"></i>
@@ -184,6 +132,21 @@
                         </ul>
                     </div>
                 </li>
+
+                <li>
+                    <a data-toggle="collapse" href="#tablesExamples">
+                        <i class="pe-7s-news-paper"></i>
+                        <p>系统设置
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="tablesExamples">
+                        <ul class="nav">
+                            <li><a href="tables/regular.html">配置项一</a></li>
+                        </ul>
+                    </div>
+                </li>
+
             </ul>
         </div>
     </div>
@@ -217,30 +180,6 @@
                     </form>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <%--<li>--%>
-                        <%--<a href="charts.html">--%>
-                        <%--<i class="fa fa-line-chart"></i>--%>
-                        <%--<p>Stats</p>--%>
-                        <%--</a>--%>
-                        <%--</li>--%>
-
-                        <%--<li class="dropdown">--%>
-                        <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown">--%>
-                        <%--<i class="fa fa-gavel"></i>--%>
-                        <%--<p class="hidden-md hidden-lg">--%>
-                        <%--Actions--%>
-                        <%--<b class="caret"></b>--%>
-                        <%--</p>--%>
-                        <%--</a>--%>
-                        <%--<ul class="dropdown-menu">--%>
-                        <%--<li><a href="#">Create New Post</a></li>--%>
-                        <%--<li><a href="#">Manage Something</a></li>--%>
-                        <%--<li><a href="#">Do Nothing</a></li>--%>
-                        <%--<li><a href="#">Submit to live</a></li>--%>
-                        <%--<li class="divider"></li>--%>
-                        <%--<li><a href="#">Another Action</a></li>--%>
-                        <%--</ul>--%>
-                        <%--</li>--%>
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -309,8 +248,7 @@
                 <div class="container-fluid">
                     <div class="layout-iframe-size">
                         <iframe src="<%=basePath %>/admin/dashboard.jsp" id="iframepage" name="iframepage" frameBorder=0 scrolling=no width="100%"
-                                onLoad="IframeLoadEND();">
-
+                                onload="ChangeIfmHeight()">
                         </iframe>
                     </div>
 
@@ -358,7 +296,7 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-</body>
+
 <!--   Core JS Files and PerfectScrollbar library inside jquery.ui   -->
 <script src="<%=basePath %>/static/plugins/js/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src="<%=basePath %>/static/plugins/js/jquery-ui.min.js" type="text/javascript"></script>
@@ -412,7 +350,7 @@
 <!--   Sharrre Library    -->
 <script src="<%=basePath %>/static/plugins/js/jquery.sharrre.js"></script>
 <script src="<%=basePath %>/static/plugins/js/demo.js"></script>
-
+</body>
 <script type="text/javascript">
     $(document).ready(function(){
 
@@ -428,18 +366,22 @@
             timer: 4000
         });
 
-
-//        $(window).on('resize', function() {
-//            var $content = $('.layout-iframe-size');
-//            $content.height($(this).height() - 147);
-//            $content.find('iframe').each(function() {
-//                $(this).height($content.height());
-//            });
-//        }).resize();
-
-
     });
 
+    //iframe页面高度调整，暂时最好的解决方案 :)
+    function ChangeIfmHeight() {
+        if ($(window.document).find("#iframepage")) {
+            var iframeObj = $(window.document).find("#iframepage");
+            var thisheight = $(document).height();
+            iframeObj .height(thisheight);
+        }
+    }
+    window.onresize=function(){
+        ChangeIfmHeight();
+
+    }
+
+    //退出函数路径设置
     function delcfm(url) {
         $('#url').val(url);//给会话中的隐藏属性URL赋值
         $('#delcfmModel').modal();
@@ -449,63 +391,6 @@
         window.location.href=url;
     }
 
-    // 定义一个函数，定时调用并刷新iframe高度
-    function reinitIframe(){
-        var iframe = document.getElementById("iframepage");
-        try{
-            var bHeight = iframe.contentWindow.document.body.scrollHeight;
-            var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-            var height = Math.max(bHeight, dHeight);
-            iframe.height = height;
-        }catch (ex){}
-    }
-
-    var timer1 = window.setInterval("reinitIframe()", 500); //定时调用开始
-
-    //完毕后干掉定时器
-    function IframeLoadEND() {
-        var iframe = document.getElementById("iframepage");
-        try {
-            window.clearInterval(timer1);
-            var bHeight = iframe.contentWindow.document.body.scrollHeight;
-            var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-            var height = Math.max(bHeight, dHeight);
-            iframe.height = height;
-        } catch (ex) {
-        }
-        // 停止定时
-        window.clearInterval(timer1);
-    }
-
-
-
-
-
-//    function reinitIframe(){
-//    var iframe = document.getElementById("iframepage");
-//    try{
-//        var bHeight = iframe.contentWindow.document.body.scrollHeight;
-//        var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-//        var height = Math.max(bHeight, dHeight);
-//        iframe.height = height;
-//        console.log(height);
-//        }catch (ex){}
-//    }
-//    window.setInterval("reinitIframe()", 200);
-
-
-
-//    function setIframeHeight(iframe) {
-//        if (iframe) {
-//            var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-//            if (iframeWin.document.body) {
-//                iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-//                }
-//            }
-//        };
-//    window.onload = function () {
-//        setIframeHeight(document.getElementById('iframepage'));
-//        };
 
 </script>
 
