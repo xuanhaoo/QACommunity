@@ -106,9 +106,9 @@ public class QaLogAction extends BaseAction {
         istrue = qaLogRecordService.deleteLog(ids);
 
         if(istrue){
-            map.put("status","0");
-        }else{
             map.put("status","1");
+        }else{
+            map.put("status","0");
         }
         status = JSONObject.fromObject(map);
         return "delete";

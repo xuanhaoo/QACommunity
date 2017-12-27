@@ -123,16 +123,13 @@
                 <li>
                     <a data-toggle="collapse" href="#tablesExamples">
                         <i class="pe-7s-news-paper"></i>
-                        <p>Tables
+                        <p>用户管理
                             <b class="caret"></b>
                         </p>
                     </a>
                     <div class="collapse" id="tablesExamples">
                         <ul class="nav">
-                            <li><a href="tables/regular.html">Regular Tables</a></li>
-                            <li><a href="tables/extended.html">Extended Tables</a></li>
-                            <li><a href="tables/bootstrap-table.html">Bootstrap Table</a></li>
-                            <li><a href="tables/datatables.net.html">DataTables.net</a></li>
+                            <li><a href="<%=basePath%>/admin/qaCommunity_communityList.action"  target="iframepage">社区用户管理</a></li>
                         </ul>
                     </div>
                 </li>
