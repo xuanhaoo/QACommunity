@@ -39,10 +39,6 @@ public class QaBackQuesDaoImpl implements QaBackQuesDao{
         return false;
     }
 
-    @Override
-    public boolean delete(int q_id) {
-        return false;
-    }
 
     @Override
     public QaQuestion getQaQuestion(int l_id) {
@@ -175,7 +171,7 @@ public class QaBackQuesDaoImpl implements QaBackQuesDao{
         String sql = "select t1.c_id as commId,t1.content as content,t1.create_date as createDate,t2.name as accountName,count(t3.id) likes from qa_comment as t1" +
                 " left join qa_front_user t2 on t1.create_user=t2.id" +
                 " left join qa_likes t3 on t1.c_id = t3.c_id" +
-                " where t1.question_id="+q_id+" GROUP BY t1.c_id";
+                " where t1.c_pid is null and t1.question_id="+q_id+" GROUP BY t1.c_id";
         Query query = sessionFactory.getCurrentSession().createSQLQuery(sql);
         List list = query.list();
         map.put("commentList", list);
@@ -193,11 +189,57 @@ public class QaBackQuesDaoImpl implements QaBackQuesDao{
         String sql = "select t1.c_id as commId,t1.content as content,t1.create_date as createDate,t2.name as accountName,count(t3.id) likes from qa_comment as t1" +
                 " left join qa_front_user t2 on t1.create_user=t2.id" +
                 " left join qa_likes t3 on t1.c_id = t3.c_id" +
-                " where t1.question_id="+pq_id+"";
+                " where t1.c_pid="+pq_id+" group by t1.c_id";
         Query query = sessionFactory.getCurrentSession().createSQLQuery(sql);
         List list = query.list();
-        map.put("commentList", list);
-        return null;
+        map.put("two_commentList", list);
+        return map;
+    }
+
+    /**
+     * 删除问题：删除问题时会将该问题下的所有的评论信息全部删除
+     * @param q_ids 问题逻辑id
+     * @return boolean
+     */
+    @Override
+    public boolean deleteQuestion(List<Integer> q_ids) {
+
+        try{
+            //删除问题
+            String hql1 = "Delete from QaQuestion where qId in (:qIds)";
+            Query query1 = sessionFactory.getCurrentSession().createQuery(hql1);
+
+            int result1 = query1.setParameterList("qIds", q_ids).executeUpdate();
+            //同时删除该问题下的所有的评论（包括一级评论和二级评论）
+            String hql2 = "delete QaComment t1 where t1.questionId in (:qIds)";
+            Query query2 = sessionFactory.getCurrentSession().createQuery(hql2);
+            query2.setParameterList("qIds",q_ids);
+            query2.executeUpdate();
+            return true;
+        }catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * 删除评论
+     * @param c_id 评论的id
+     * @return boolean
+     */
+    public boolean deleteComment(int c_id) {
+        try{
+            //删除该评论，c_id为评论id：（1）当删除的是一级评论是会将该评论下的二级删除；（2）当为二级评论直接删除二级评论
+            String hql1 = "delete QaComment t1 where t1.cId = ? or t1.cPid = ?";
+            Query query1 = sessionFactory.getCurrentSession().createQuery(hql1);
+            query1.setInteger(0, c_id);
+            query1.setInteger(1, c_id);
+            query1.executeUpdate();
+            return true;
+        }catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 

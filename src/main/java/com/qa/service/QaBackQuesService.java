@@ -13,7 +13,7 @@ public interface QaBackQuesService {
 
     public boolean update(QaQuestion qaQuestion);
 
-    public boolean delete(int q_id);
+    public boolean deleteQues(List<Integer> c_ids);
 
     public QaQuestion getQaQuestion(int l_id);
 
@@ -27,4 +27,6 @@ public interface QaBackQuesService {
 
 
     public Map getTheComment_two(int pq_id);
+
+    public boolean deleteComm(int c_id);
 }

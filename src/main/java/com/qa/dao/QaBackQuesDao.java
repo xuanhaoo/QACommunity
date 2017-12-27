@@ -19,7 +19,7 @@ public interface QaBackQuesDao {
 
     public boolean update(QaQuestion qaQuestion);
 
-    public boolean delete(int q_id);
+    public boolean deleteQuestion(List<Integer> q_ids);
 
     public QaQuestion getQaQuestion(int l_id);
 
@@ -66,4 +66,11 @@ public interface QaBackQuesDao {
      * @return
      */
     public Map getTheComment_two(int pq_id);
+
+    /**
+     * 删除评论
+     * @param c_id
+     * @return
+     */
+    public boolean deleteComment(int c_id);
 }

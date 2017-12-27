@@ -32,6 +32,7 @@ public class QaBackQuesAction extends BaseAction implements ModelDriven<QaQuesti
     private JSONObject singleQuesInfo = null;  //单个问题的信息json
     private JSONObject quesComment = null;      //问题评论json
     private Map singleInfo = null;          //map型值栈
+    private Map qaTwoComment = null;  //设置二级评论的值栈
 
 
 
@@ -145,6 +146,61 @@ public class QaBackQuesAction extends BaseAction implements ModelDriven<QaQuesti
         return "comment_one";
     }
 
+    /**
+     * 获取某个评论下的二级评论
+     * @return
+     */
+    public String getTwoComment() {
+        String pqId_temp = request.getParameter("pqId");
+        int pqId = Integer.parseInt(pqId_temp);
+        qaTwoComment = qaBackQuesService.getTheComment_two(pqId);  //接受返回map集合
+
+        return "comment_two";
+    }
+
+    /**
+     * 删除问题
+     * @return
+     */
+    public String deleteQues() {
+        Map<String, Object> map = new HashMap<>();
+        String[] qIds_temps;
+        Map<String, Object> params = (Map) ActionContext.getContext().getParameters();
+        qIds_temps = ((String []) params.get("qId"));
+        // 转换为List集合
+        List<Integer> ids = new ArrayList<Integer>();
+        for (int j = 0; j < qIds_temps.length; j++) {
+            ids.add(Integer.parseInt(qIds_temps[j]));
+        }
+        if(qaBackQuesService.deleteQues(ids)) {
+            map.put("status", "0");
+        }else {
+            map.put("status", "1");
+        }
+        status = JSONObject.fromObject(map);
+        return "deleteQues";
+    }
+
+    /**
+     * 删除评论（包括一级和二级）
+     * @return
+     */
+    public String deleteComment() {
+        Map<String, Object> map = new HashMap<>();
+        String cId_temp = request.getParameter("cId");
+        int cId = Integer.parseInt(cId_temp);
+        if(qaBackQuesService.deleteComm(cId)) {
+            map.put("status", "0");
+        }else {
+            map.put("status", "1");
+        }
+        status = JSONObject.fromObject(map);
+        return "deleteComm";
+    }
+
+
+
+
 
     /**
      * 以下是一些变量的实现方法：如值栈或json数据
@@ -185,5 +241,12 @@ public class QaBackQuesAction extends BaseAction implements ModelDriven<QaQuesti
 
     public void setQuesComment(JSONObject quesComment) {
         this.quesComment = quesComment;
+    }
+    public Map getQaTwoComment() {
+        return qaTwoComment;
+    }
+
+    public void setQaTwoComment(Map qaTwoComment) {
+        this.qaTwoComment = qaTwoComment;
     }
 }

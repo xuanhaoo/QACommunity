@@ -30,10 +30,6 @@ public class QaBackQuesServiceImpl implements QaBackQuesService{
         return false;
     }
 
-    @Override
-    public boolean delete(int q_id) {
-        return false;
-    }
 
 
     @Override
@@ -193,8 +189,51 @@ public class QaBackQuesServiceImpl implements QaBackQuesService{
      * @return
      */
     public Map getTheComment_two(int pq_id) {
+        List<BaCommToQues> baCommToQuesList = new ArrayList<>();
+        Map map  = this.qaBackQuesDao.getTheComment_two(pq_id);
+        List list = (List)map.get("two_commentList");
+        //同理，新建class,获取评论，用户以及赞数
+        for (Object aList : list) {
+            Object[] object = (Object[]) aList;
+            BaCommToQues bbt = new BaCommToQues();
+            bbt.setCommId((Integer) object[0]);
+            bbt.setContent((String) object[1]);
+            bbt.setCreateDate((Date) object[2]);
+            bbt.setAccountName((String) object[3]);
+            bbt.setLikes((BigInteger) object[4]);
 
-        return null;
+            baCommToQuesList.add(bbt);
+        }
+        map.remove("two_commentList");
+        map.put("two_list", baCommToQuesList);
+        return map;
+    }
+
+    /**
+     * 删除问题
+     * @param c_ids
+     * @return
+     */
+    @Override
+    public boolean deleteQues(List<Integer> c_ids) {
+        if(this.qaBackQuesDao.deleteQuestion(c_ids)) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    /**
+     * 删除评论
+     * @param c_id
+     * @return
+     */
+    public boolean deleteComm(int c_id) {
+        if(this.qaBackQuesDao.deleteComment(c_id)) {
+            return true;
+        }else {
+            return false;
+        }
     }
 
 }

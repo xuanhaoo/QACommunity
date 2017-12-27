@@ -47,6 +47,14 @@
             <result name="comment_one" type="json">
                 <param name="root">quesComment</param>
             </result>
+            <result name="comment_two">/admin/question/twoComment.jsp</result>
+            <result name="deleteQues" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="deleteComm" type="json">
+                <param name="root">status</param>
+            </result>
+
         </action>
         <!--qaLog, 后台对日志的管理-->
         <action name="qaLog_*" class="com.qa.action.QaLogAction" method="{1}">
