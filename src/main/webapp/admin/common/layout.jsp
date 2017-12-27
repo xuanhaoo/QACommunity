@@ -127,7 +127,7 @@
                             <b class="caret"></b>
                         </p>
                     </a>
-                    <div class="collapse" id="pagesExamples">
+                    <div class="collapse" id="tablesExamples">
                         <ul class="nav">
 
                             <li><a href="<%=basePath%>/admin/qaCommunity_communityList.action"  target="iframepage">社区用户管理</a></li>
@@ -136,13 +136,27 @@
                 </li>
 
                 <li>
-                    <a data-toggle="collapse" href="#tablesExamples">
+                    <a data-toggle="collapse" href="#pagesExamples">
+                        <i class="pe-7s-gift"></i>
+                        <p>日志记录
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse" id="pagesExamples">
+                        <ul class="nav">
+                            <li><a href="<%=basePath%>/admin/qaLog_logList.action"  target="iframepage">日志管理</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a data-toggle="collapse" href="#sysExamples">
                         <i class="pe-7s-news-paper"></i>
                         <p>系统设置
                             <b class="caret"></b>
                         </p>
                     </a>
-                    <div class="collapse" id="tablesExamples">
+                    <div class="collapse" id="sysExamples">
                         <ul class="nav">
                             <li><a href="tables/regular.html">配置项一</a></li>
                         </ul>
