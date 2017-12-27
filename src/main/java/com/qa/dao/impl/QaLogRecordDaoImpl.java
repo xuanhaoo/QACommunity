@@ -51,12 +51,15 @@ public class QaLogRecordDaoImpl implements QaLogRecordDao {
     */
     @Override
     public Boolean deleteLog(List<Integer> logRecords) {
+        boolean b = false;
         String hql = "Delete from QaLogRecord where id in (:ids)";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
 
         int result = query.setParameterList("ids", logRecords).executeUpdate();
-        System.out.println(result);
-        return false;
+        if(result != 0){
+            b = true;
+        }
+        return b;
     }
 
     /**

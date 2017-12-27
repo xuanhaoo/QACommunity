@@ -67,6 +67,21 @@
             <result name="logList">/admin/logRecord.jsp</result>
         </action>
 
+        <action name="qaCommunity_*" class="com.qa.action.QaCommunityUserAction" method="{1}">
+            <result name="list" type="json">
+                <param name="root">info</param>
+            </result>
+            <result name="delete" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="update" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="communityList">/admin/community.jsp</result>
+            <result name="editUser">/admin/edit_community.jsp</result>
+        </action>
+
+
     </package>
 
 </struts>

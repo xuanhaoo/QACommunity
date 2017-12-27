@@ -120,15 +120,17 @@
                     </div>
                 </li>
                 <li>
-                    <a data-toggle="collapse" href="#pagesExamples">
-                        <i class="pe-7s-gift"></i>
-                        <p>日志记录
+                    <a data-toggle="collapse" href="#tablesExamples">
+                        <i class="pe-7s-news-paper"></i>
+                        <p>用户管理
+
                             <b class="caret"></b>
                         </p>
                     </a>
                     <div class="collapse" id="pagesExamples">
                         <ul class="nav">
-                            <li><a href="<%=basePath%>/admin/qaLog_logList.action"  target="iframepage">日志管理</a></li>
+
+                            <li><a href="<%=basePath%>/admin/qaCommunity_communityList.action"  target="iframepage">社区用户管理</a></li>
                         </ul>
                     </div>
                 </li>

@@ -1,10 +1,13 @@
 package com.qa.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 /**
- * Create by xuanhao on 2017/12/5
+ * Created by InterlliJ IDEA.
+ * User:3to
+ * Date:17-12-26
+ * Time:上午10:16
  */
 @Entity
 @Table(name = "qa_front_user", schema = "qacommunity", catalog = "")
@@ -13,16 +16,15 @@ public class QaFrontUser {
     private String account;
     private String password;
     private String name;
-    private byte sex;
+    private int sex;
     private String photo;
     private String phone;
     private String email;
     private Date createDate;
-    private Date updateDate;
-    private byte status;
+    private int status;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -32,7 +34,7 @@ public class QaFrontUser {
     }
 
     @Basic
-    @Column(name = "account", nullable = false, length = 64)
+    @Column(name = "account")
     public String getAccount() {
         return account;
     }
@@ -42,7 +44,7 @@ public class QaFrontUser {
     }
 
     @Basic
-    @Column(name = "password", nullable = false, length = 64)
+    @Column(name = "password")
     public String getPassword() {
         return password;
     }
@@ -52,7 +54,7 @@ public class QaFrontUser {
     }
 
     @Basic
-    @Column(name = "name", nullable = false, length = 64)
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -62,17 +64,17 @@ public class QaFrontUser {
     }
 
     @Basic
-    @Column(name = "sex", nullable = false)
-    public byte getSex() {
+    @Column(name = "sex")
+    public int getSex() {
         return sex;
     }
 
-    public void setSex(byte sex) {
+    public void setSex(int sex) {
         this.sex = sex;
     }
 
     @Basic
-    @Column(name = "photo", nullable = true, length = 255)
+    @Column(name = "photo")
     public String getPhoto() {
         return photo;
     }
@@ -82,7 +84,7 @@ public class QaFrontUser {
     }
 
     @Basic
-    @Column(name = "phone", nullable = false, length = 15)
+    @Column(name = "phone")
     public String getPhone() {
         return phone;
     }
@@ -92,7 +94,7 @@ public class QaFrontUser {
     }
 
     @Basic
-    @Column(name = "email", nullable = true, length = 25)
+    @Column(name = "email")
     public String getEmail() {
         return email;
     }
@@ -102,7 +104,7 @@ public class QaFrontUser {
     }
 
     @Basic
-    @Column(name = "create_date", nullable = false)
+    @Column(name = "create_date")
     public Date getCreateDate() {
         return createDate;
     }
@@ -112,22 +114,12 @@ public class QaFrontUser {
     }
 
     @Basic
-    @Column(name = "update_date", nullable = true)
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    @Basic
-    @Column(name = "status", nullable = false)
-    public byte getStatus() {
+    @Column(name = "status")
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(byte status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -148,7 +140,6 @@ public class QaFrontUser {
         if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (createDate != null ? !createDate.equals(that.createDate) : that.createDate != null) return false;
-        if (updateDate != null ? !updateDate.equals(that.updateDate) : that.updateDate != null) return false;
 
         return true;
     }
@@ -159,13 +150,12 @@ public class QaFrontUser {
         result = 31 * result + (account != null ? account.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (int) sex;
+        result = 31 * result + sex;
         result = 31 * result + (photo != null ? photo.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (createDate != null ? createDate.hashCode() : 0);
-        result = 31 * result + (updateDate != null ? updateDate.hashCode() : 0);
-        result = 31 * result + (int) status;
+        result = 31 * result + status;
         return result;
     }
 }
