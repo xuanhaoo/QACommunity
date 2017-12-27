@@ -11,6 +11,7 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>问题详情</title>
@@ -119,6 +120,10 @@
             text-transform: uppercase;
             text-align: center;
         }
+        .returnlast {
+            margin-right: 7px;
+            float: right;
+        }
     </style>
 
 
@@ -126,10 +131,11 @@
 <body>
     <div class="">
             <blockquote class="layui-elem-quote quote1">
-                <a href="javascript:;" class="layui-btn layui-btn-sm">
-                    <i class="layui-icon">&#xe615;</i> 返回
-                </a>
+
                 <span class="title-style">问题标题：<s:property value="singleInfo.title"/></span>
+                <a href="javascript:;" class="layui-btn layui-btn-sm returnlast">
+                <i class="layui-icon">&#xe615;</i> 返回
+                </a>
             </blockquote>
 
         <%--问题的浏览日期图表--%>
@@ -190,15 +196,16 @@
 
 </body>
 <script src="<%=basePath %>/static/plugins/js/jquery-3.1.1.min.js" type="text/javascript"></script>
-<script src="<%=basePath %>/static/plugins/layui/layui.all.js"></script>
+<script src="<%=basePath %>/static/plugins/layui/layui.js"></script>
 <script src="<%=basePath %>/static/plugins/js/echarts.min.js"></script>
 <%--<script src="<%=basePath %>/static/js/basigleques.js"></script>--%>
 
 <script type="text/javascript">
-    layui.use(['laydate','table','laytpl'], function() {
+    layui.use(['laydate','table','laytpl','layer'], function() {
         var table = layui.table;
         var laydate = layui.laydate;
         var laytpl = layui.laytpl;
+        var layer = layui.layer;
 
 
         //初始化日期选择
@@ -207,11 +214,6 @@
             , type: 'date'
             , range: true
             , done: function (value, date, endDate) {
-                // console.log(date);
-                console.log(endDate); //得结束的日期时间对象，开启范围选择（range: true）才会返回。对象成员同上。
-                date = date['year'] + "-" + date['month'] + "-" + date['date'] + " " + date['hours'] + ":" + "" + date['minutes'] + ":" + date['seconds'];
-                endDate = endDate['year'] + "-" + endDate['month'] + "-" + endDate['date'] + " " + endDate['hours'] + ":" + "" + endDate['minutes'] + ":" + endDate['seconds'];
-
 
             }
         });
@@ -229,6 +231,9 @@
 
                 }
             }
+//            ,complete:function() {
+//                ChangeIfmHeight();
+//            }
         });
         //初始化ajax加载评论
         $.ajax({
@@ -243,11 +248,13 @@
 
                 }
             }
+            ,complete:function() {
+                ChangeIfmHeight();   //动态获取数据后重新改变页面高度
+            }
         });
 
         $("#search-brow").on('click', function () {
-            var inputDate = $("#browse").val();
-            console.log(inputDate);
+            var inputDate = $("#browse").val();;
             getBrowseByAjax(inputDate, quesId);
         });
 
@@ -267,6 +274,9 @@
 
                     }
                 }
+                ,complete:function() {
+                    ChangeIfmHeight();
+                }
             });
         }
 
@@ -274,15 +284,10 @@
          *获取到json数据对其进行组装，嵌入评论页
          * */
         function getComment_one(data) {
-            console.log(data);
             var commList = data.commList;
-            console.log(commList);
             //$("#comment_html").html("");        //清空初始化
             var html;
-//            var html1 = '<div class="comment_box ui comments ">'+'<h3 class="ui dividing header">评论</h3>';
-//            $("#comment_html").append(html1);
             $.each(commList, function(index, item) {
-                console.log(item);
                 var date = new Date(item.createDate['time']).toLocaleDateString();
                 var time = new Date(item.createDate['time']).toLocaleTimeString();
                 var dateTime = date + " " + time;
@@ -298,8 +303,8 @@
                                             '<div class="text text_style">'+item.content+'</div>'+
                                             '<div class="metadata tool_comment">'+
                                                 '<div class="rating"><i class="fa fa-thumbs-o-up">'+item.likes+'</i></div>'+
-                                                '<a class="reply"><i class="fa fa-comments"></i>查看回复</a>'+
-                                                '<a class="reply"><i class="fa fa-trash-o"></i>删除</a>'+
+                                                '<a class="reply getTwo" data-id="'+item.commId+'" href="javascript:;"><i class="fa fa-comments"></i>查看回复</a>'+
+                                                '<a class="reply deleteOne" data-id="'+item.commId+'" href="javascript:;"><i class="fa fa-trash-o"></i>删除</a>'+
                                             '</div>'+
                                     '</div>'+
                         '</div>'+
@@ -307,10 +312,6 @@
 
                 $("#comment_html").append(html);
             });
-//            var html3 = '</div>';
-//            $("#comment_html").append(html3);
-
-
 
         }
 
@@ -381,42 +382,77 @@
                             ]
                         }
                     },
-//            {
-//                name:'最低气温',
-//                type:'line',
-//                data:[1, -2, 2, 5, 3, 2, 0],
-//                markPoint: {
-//                    data: [
-//                        {name: '周最低', value: -2, xAxis: 1, yAxis: -1.5}
-//                    ]
-//                },
-//                markLine: {
-//                    data: [
-//                        {type: 'average', name: '平均值'},
-//                        [{
-//                            symbol: 'none',
-//                            x: '90%',
-//                            yAxis: 'max'
-//                        }, {
-//                            symbol: 'circle',
-//                            label: {
-//                                normal: {
-//                                    position: 'start',
-//                                    formatter: '最大值'
-//                                }
-//                            },
-//                            type: 'max',
-//                            name: '最高点'
-//                        }]
-//                    ]
-//                }
-//            }
                 ]
             };
             myChart1.setOption(option1);
 
         }
+
+        $(".returnlast").on('click', function() {
+            window.location.href = "<%=basePath %>/admin/qaBackQues_allQuestionView.action";
+        });
+        /**
+         *将二级评论显示在弹窗页面
+         */
+
+        $(document).on('click', '.getTwo', function() {
+            var commId = $(this).data("id");
+            var two_commentUrl = "<%=path%>/admin/qaBackQues_getTwoComment.action?pqId="+commId;
+            layer.open({
+                title: '二级评论',
+                type: 2,
+                shadeClose: true,
+                shade: 0.8,
+                fix:true,
+                shift: 2,
+                maxmin: true,
+                area: ['700px', '550px'],
+                content: two_commentUrl,
+                scrollbar: false,
+            });
+        });
+
+
+        $(document).on('click', '.deleteOne', function() {
+            var commId = $(this).data("id");
+            layer.confirm('这样会将该评论的下级一起删除！确定删除吗？', {
+                icon:3,
+                btn: ['确定删除', '我在想想']
+            },function() {
+                $.ajax({
+                    url: "<%=path%>/admin/qaBackQues_deleteComment.action",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {'cId': commId},
+                    error: function(request){
+                        layer.msg("请求服务器超时", {time: 1000, icon: 5});
+                    },
+                    success: function(data){
+                        if (data.status = "0"){
+                            layer.msg("删除成功！",{time: 1000,icon: 1}, function(){
+                                location.reload();
+                            });
+                        }else{
+                            layer.msg('删除失败！', {time: 1000,icon: 2});
+                        }
+                    }
+                });
+            });
+        });
+
+
+        //ajax加载完数据后重新修改iframe高度
+        // 修改iframe的高度值
+        function ChangeIfmHeight() {
+            if ($(window.parent.document).find("#iframepage")) {
+                var iframeObj = $(window.parent.document).find("#iframepage");
+                var thisheight = $(document).height();
+                iframeObj .height(thisheight);
+            }
+        }
+
     });
+
 
 
 </script>

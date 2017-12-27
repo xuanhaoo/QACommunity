@@ -44,7 +44,13 @@
             <s:iterator value="qaTheLabel">
                 <input type="hidden" name="lId" value="<s:property value="lId"/>">
                 <div class="content">
-                    <legend>添加标签</legend>
+                    <legend>添加标签
+                        <div class="columns columns-right" style="margin-right: 30px;margin-top: -4px;float: right;">
+                            <button class="btn btn-default returnlast" type="button" name="addLabel" title="返回">
+                                <i class="fa fa-arrow-left"></i>
+                            </button>
+                        </div>
+                    </legend>
 
                     <fieldset>
                         <div class="form-group">
@@ -222,6 +228,10 @@
                 });
             }
 
+        });
+
+        $(".returnlast").on('click', function() {
+            window.location.href = "<%=basePath %>/admin/qaBackLabel_getAllLabel.action";
         });
 
     });

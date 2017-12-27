@@ -48,15 +48,15 @@
         <form class="layui-form" style="display: inline-block;margin-left: 10px; min-height: inherit; vertical-align: bottom;">
             <div class="layui-input-block" style="display: inline-block;margin-left: 20px; min-height: inherit; vertical-align: bottom;">
                 <div class="layui-form-pane">
-                    <label class="layui-form-label" style="padding: 4px 15px;height:30px;">内容</label>
+                    <label class="layui-form-label" style="padding: 4px 15px;height:30px;">日期</label>
                     <div class="layui-input-inline">
                         <input class="layui-input" placeholder="日期范围" id="log_beginDate" name="beginDate" style="width: 300px;height:30px; line-height:30px;"  value="" readonly="true">
                     </div>
                 </div>
             </div>
-            <a href="javascript:;" class="layui-btn layui-btn-sm" id="log_searchAll">
-                <i class="layui-icon">&#xe615;</i> 查看全部
-            </a>
+            <%--<a href="javascript:;" class="layui-btn layui-btn-sm" id="log_searchAll">--%>
+                <%--<i class="layui-icon">&#xe615;</i> 查看全部--%>
+            <%--</a>--%>
         </form>
     </blockquote>
     <div class="log">
@@ -66,7 +66,7 @@
                 <div class="layui-btn-group">
                     <button class="layui-btn layui-btn-sm" id="delChoose">删除选中行数据</button>
                 </div>
-                <table id="questionDemo" lay-filter="log"></table>
+                <table id="questionDemo" lay-filter="ques"></table>
             </div>
         </fieldset>
     </div>
@@ -99,10 +99,11 @@
 </script>
 
 <script>
-    layui.use(['laydate','table','laytpl'], function(){
+    layui.use(['laydate','table','laytpl','layer'], function(){
         var table = layui.table;
         var laydate = layui.laydate;
         var laytpl = layui.laytpl;
+        var layer = layui.layer;
 
 
         // 初始化日期选择
@@ -142,7 +143,7 @@
         table.render({
             elem: '#questionDemo'
             ,id:'questionDemo'
-            ,height: 700
+            ,height: 600
             ,url: '<%=path%>/admin/qaBackQues_getAllQuestion.action' //数据接口
             ,page: true //开启分页
             ,align:'center'
@@ -163,76 +164,15 @@
                 ,{field: 'accountName', title: '用户昵称', align:'center',width: $(document).width()*0.15}
                 ,{toolbar: '#barDemo', title:"操作", align:'center',width: $(document).width()*0.15,fixed: 'right'}
             ]]
+            ,done: function() {
+                //数据渲染完毕后设置窗口高度
+                ChangeIfmHeight();
+            }
 
         });
 
-
-        // 删除选择
-        <%--$("#delChoose").on("click",function(){--%>
-            <%--layer.confirm("确定删除选择的所有日志吗?",function(index) {--%>
-                <%--// 获取选中的对象--%>
-                <%--var checkStatus = table.checkStatus('table_log');--%>
-                <%--// 得到对象中的数据--%>
-                <%--var chooseData = checkStatus.data;--%>
-                <%--// 创建一个id集,传给后台--%>
-                <%--var ids = [];--%>
-                <%--// 遍历取出id--%>
-                <%--for (var i = 0; i < chooseData.length; i++) {--%>
-                    <%--// console.log(chooseData[i].id);--%>
-                    <%--ids.push(chooseData[i].id);--%>
-                <%--}--%>
-                <%--console.log(ids);--%>
-                <%--$.ajax({--%>
-                    <%--url: '<%=path%>/admin/qaLog_deleteList.action'--%>
-                    <%--,traditional:true   //  将数组序列化,防止传参数时将数组分割(id:ids[0] id: ids[1])--%>
-                    <%--,data:{"id":ids}--%>
-                    <%--,dataType:'json'--%>
-                    <%--// 返回成功的--%>
-                    <%--,success:function(data){--%>
-                        <%--if(data.status == "0"){--%>
-                            <%--layer.msg("删除失败!!",{--%>
-                                <%--icon:2,--%>
-                                <%--timeout:2000--%>
-                            <%--},function () {--%>
-                                <%--location.reload();--%>
-                            <%--});--%>
-                        <%--}else{--%>
-                            <%--layer.msg("删除成功!",{--%>
-                                <%--icon:1,--%>
-                                <%--timeout:2000--%>
-                            <%--},function(){--%>
-                                <%--location.reload();--%>
-                            <%--});--%>
-                        <%--}--%>
-                    <%--}--%>
-                    <%--// 超时--%>
-                    <%--, timeout:function(){--%>
-                        <%--layer.msg("请求超时!",{--%>
-                            <%--icon:2,--%>
-                            <%--timeout:2000--%>
-                        <%--},function(){--%>
-                            <%--location.reload();--%>
-                        <%--});--%>
-                    <%--}--%>
-                    <%--// 错误--%>
-                    <%--, error:function(){--%>
-                        <%--layer.msg("发生错误!请与管理员联系!",{--%>
-                            <%--icon:2,--%>
-                            <%--timeout:2000--%>
-                        <%--},function () {--%>
-                            <%--location.reload();--%>
-                        <%--});--%>
-                    <%--}--%>
-
-                <%--})--%>
-            <%--});--%>
-
-        <%--});--%>
-
-
-
         // 监听工具条
-        table.on('tool(log)',function(obj){
+        table.on('tool(ques)',function(obj){
             var data = obj.data;//获取改行数据
             //查看详细信息
             if(obj.event == 'detailQues') {
@@ -241,6 +181,13 @@
             }
             //删除该问题
             if(obj.event == 'delQues') {
+                layer.confirm('这样会将该问题的评论一起删除！确定删除吗？', {
+                    icon:3,
+                    btn: ['确定删除', '我在想想']
+                },function() {
+                    var theQuesId = data.quesId;
+                    deleteQues(theQuesId);
+                });
 
             }
         });
@@ -251,6 +198,104 @@
          */
         function getDetailQues(quesId) {
             window.location.href = "<%=path%>/admin/qaBackQues_getTheQues.action?qId="+quesId;
+        }
+
+
+        function deleteQues(quesId) {
+            $.ajax({
+                url: "<%=path%>/admin/qaBackQues_deleteQues.action?qId="+quesId,
+                type: 'POST',
+                dataType: 'json',
+                data: {'qId': quesId},
+                error: function(request){
+                    layer.msg("请求服务器超时", {time: 1000, icon: 5});
+                },
+                success: function(data){
+                    if (data.status = "0"){
+                        layer.msg("删除成功！",{time: 1000,icon: 1}, function(){
+                            location.reload();
+                        });
+                    }else{
+                        layer.msg('删除失败！', {time: 1000,icon: 2});
+                    }
+                }
+            });
+        }
+
+
+        // 删除选择
+        $("#delChoose").on("click",function(){
+            layer.confirm('这样会将该问题的评论一起删除！确定删除已选择的问题吗？', {
+                icon:3,
+                btn: ['确定删除', '我在想想']
+            },function(index) {
+                // 获取选中的对象
+                var checkStatus = table.checkStatus('questionDemo');
+                // 得到对象中的数据
+                var chooseData = checkStatus.data;
+                // 创建一个id集,传给后台
+                var ids = [];
+                // 遍历取出id
+                for (var i = 0; i < chooseData.length; i++) {
+                    ids.push(chooseData[i].quesId);
+                }
+
+                $.ajax({
+                    url: '<%=path%>/admin/qaBackQues_deleteQues.action'
+                    ,traditional:true   //  将数组序列化,防止传参数时将数组分割(id:ids[0] id: ids[1])
+                    ,data:{"qId":ids}
+                    ,dataType:'json'
+                    // 返回成功的
+                    ,success:function(data){
+                        if(data.status == "0"){
+                            layer.msg("删除成功!",{
+                                icon:1,
+                                timeout:2000
+                            },function(){
+                                location.reload();
+                            });
+
+                        }else{
+                            layer.msg("删除失败!!",{
+                                icon:2,
+                                timeout:2000
+                            },function () {
+                                location.reload();
+                            });
+                        }
+                    }
+                    // 超时
+                    , timeout:function(){
+                        layer.msg("请求超时!",{
+                            icon:2,
+                            timeout:2000
+                        },function(){
+                            location.reload();
+                        });
+                    }
+                    // 错误
+                    , error:function(){
+                        layer.msg("发生错误!请与管理员联系!",{
+                            icon:2,
+                            timeout:2000
+                        },function () {
+                            location.reload();
+                        });
+                    }
+
+                })
+            });
+
+        });
+
+        //ajax加载完数据后重新修改iframe高度
+        // 修改iframe的高度值
+        function ChangeIfmHeight() {
+            if ($(window.parent.document).find("#iframepage")) {
+                var iframeObj = $(window.parent.document).find("#iframepage");
+                var thisheight = $(document).height();
+                iframeObj .height(thisheight);
+            }
         }
 
     });

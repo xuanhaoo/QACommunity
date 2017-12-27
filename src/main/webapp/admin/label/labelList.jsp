@@ -147,6 +147,7 @@
     }
 
     $().ready(function(){
+
         window.operateEvents = {
 //            'click .view': function (e, value, row, index) {
 //                console.log(row.lId);
