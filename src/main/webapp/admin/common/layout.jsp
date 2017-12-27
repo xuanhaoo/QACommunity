@@ -34,7 +34,11 @@
     <link type="text/css" href="<%=basePath %>/static/plugins/css/font-awesome.min.css" rel="stylesheet">
     <link type="text/css" href='<%=basePath %>/static/plugins/css/685fd913f1e14aebad0cc9d3713ee469.css' rel='stylesheet' />
     <link type="text/css" href="<%=basePath %>/static/plugins/css/pe-icon-7-stroke.css" rel="stylesheet" />
-
+    <style>
+        #iframepage {
+            /*min-height:900px;*/
+        }
+    </style>
 </head>
 <body>
 
@@ -113,7 +117,7 @@
                     <div class="collapse" id="formsExamples">
                         <ul class="nav">
                             <li><a href="<%=basePath %>/admin/qaBackLabel_getAllLabel.action" target="iframepage">标签管理</a></li>
-                            <li><a href="<%=basePath %>/admin/qaBackQues_getAllQuestion.action" target="iframepage">内容管理</a></li>
+                            <li><a href="<%=basePath %>/admin/qaBackQues_allQuestionView.action" target="iframepage">内容管理</a></li>
                             <li><a href="forms/validation.html">Validation Forms</a></li>
                             <li><a href="forms/wizard.html">Wizard</a></li>
                         </ul>
@@ -300,11 +304,13 @@
             <%--iframe主体部分--%>
             <div class="content">
                 <div class="container-fluid">
+                    <div class="layout-iframe-size">
+                        <iframe src="<%=basePath %>/admin/dashboard.jsp" id="iframepage" name="iframepage" frameBorder=0 scrolling=no width="100%"
+                                onLoad="IframeLoadEND();">
 
-                    <iframe src="<%=basePath %>/admin/dashboard.jsp" id="iframepage" name="iframepage" frameBorder=0 scrolling=no width="100%"
-                            onLoad="IframeLoadEND();">
+                        </iframe>
+                    </div>
 
-                    </iframe>
                 </div>
             </div>
 
@@ -420,6 +426,15 @@
         });
 
 
+//        $(window).on('resize', function() {
+//            var $content = $('.layout-iframe-size');
+//            $content.height($(this).height() - 147);
+//            $content.find('iframe').each(function() {
+//                $(this).height($content.height());
+//            });
+//        }).resize();
+
+
     });
 
     function delcfm(url) {
@@ -445,19 +460,50 @@
     var timer1 = window.setInterval("reinitIframe()", 500); //定时调用开始
 
     //完毕后干掉定时器
-    function IframeLoadEND(){
+    function IframeLoadEND() {
         var iframe = document.getElementById("iframepage");
-        try{
+        try {
             window.clearInterval(timer1);
             var bHeight = iframe.contentWindow.document.body.scrollHeight;
             var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
             var height = Math.max(bHeight, dHeight);
             iframe.height = height;
-        }catch (ex){}
+        } catch (ex) {
+        }
         // 停止定时
         window.clearInterval(timer1);
-
     }
+
+
+
+
+
+//    function reinitIframe(){
+//    var iframe = document.getElementById("iframepage");
+//    try{
+//        var bHeight = iframe.contentWindow.document.body.scrollHeight;
+//        var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+//        var height = Math.max(bHeight, dHeight);
+//        iframe.height = height;
+//        console.log(height);
+//        }catch (ex){}
+//    }
+//    window.setInterval("reinitIframe()", 200);
+
+
+
+//    function setIframeHeight(iframe) {
+//        if (iframe) {
+//            var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+//            if (iframeWin.document.body) {
+//                iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+//                }
+//            }
+//        };
+//    window.onload = function () {
+//        setIframeHeight(document.getElementById('iframepage'));
+//        };
+
 </script>
 
 <script>

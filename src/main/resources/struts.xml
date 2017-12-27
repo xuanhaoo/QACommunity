@@ -24,7 +24,7 @@
             <result name="dashboard">/admin/common/layout.jsp</result>
             <result name="userLogin">/admin/login.jsp</result>
         </action>
-
+        <!--qaBackLabel,后台对标签的管理-->
         <action name="qaBackLabel_*" class="QaBackLabelAction" method="{1}">
             <result name="label_list">/admin/label/labelList.jsp</result>
             <result name="addLabel">/admin/label/addLabel.jsp</result>
@@ -34,10 +34,21 @@
             </result>
             <!--<result name="input">/admin/label/labelList.jsp</result>-->
         </action>
+        <!--qaBackQues, 后台对问题的管理-->
         <action name="qaBackQues_*" class="QaBackQuesAction" method="{1}">
-            <result name="question_list">/admin/question/questionList.jsp</result>
+            <result name="ques_list_view">/admin/question/questionList.jsp</result>
+            <result name="question_list" type="json">
+                <param name="root">quesList</param>
+            </result>
+            <result name="single_question">/admin/question/singleQuestion.jsp</result>
+            <result name="brow_date" type="json">
+                <param name="root">singleQuesInfo</param>
+            </result>
+            <result name="comment_one" type="json">
+                <param name="root">quesComment</param>
+            </result>
         </action>
-
+        <!--qaLog, 后台对日志的管理-->
         <action name="qaLog_*" class="com.qa.action.QaLogAction" method="{1}">
             <result name="list" type="json">
                 <param name="root">info</param>
