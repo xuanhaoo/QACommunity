@@ -84,4 +84,18 @@
 
     </package>
 
+    <!--前台分类，针对所有的用户（登录与未登录）-->
+    <package name="frontIndex" namespace="/admin" extends="json-default">
+
+    </package>
+
+
+    <!--前台用户登录后，进行的一系列操作， 过滤验证配置见 web.xml-->
+    <package name="frontUser" namespace="/frontUser" extends="json-default">
+
+    </package>
+
+
+
+
 </struts>

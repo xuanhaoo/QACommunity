@@ -1,5 +1,6 @@
 package com.qa.entity;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -16,6 +17,8 @@ public class BackQuestion {
     private String topicName;
     private String account;
     private String accountName;
+    private BigInteger commentCount;        //评论统计
+    private BigInteger browseCount;         //浏览统计
 
     public int getQuesId() {
         return quesId;
@@ -87,6 +90,23 @@ public class BackQuestion {
 
     public void setAccountName(String accountName) {
         this.accountName = accountName;
+    }
+
+
+    public BigInteger getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(BigInteger commentCount) {
+        this.commentCount = commentCount;
+    }
+
+    public BigInteger getBrowseCount() {
+        return browseCount;
+    }
+
+    public void setBrowseCount(BigInteger browseCount) {
+        this.browseCount = browseCount;
     }
 
 }
