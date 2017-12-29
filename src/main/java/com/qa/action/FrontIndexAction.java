@@ -1,6 +1,8 @@
 package com.qa.action;
 
 import com.qa.service.FrontIndexService;
+import com.qa.service.QaBackQuesService;
+import net.sf.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -19,10 +21,18 @@ public class FrontIndexAction extends BaseAction{
     @Resource
     private FrontIndexService frontIndexService;
 
+    @Resource
+    private QaBackQuesService qaBackQuesService;
+
     private Map quesList  = null;
 
     private Map theQues = null;
 
+
+    private JSONObject quesComment;
+
+    private Map qaTwoComment = null;
+    private Map topicList = null;
 
 
     public String getQuestionIndex() {
@@ -51,6 +61,37 @@ public class FrontIndexAction extends BaseAction{
         theQues = frontIndexService.getTheQuesInfo(quesid);
 
         return "detail_ques";
+    }
+
+
+    /**
+     *获取一级评论：即该问题下的直接评论
+     * @return
+     */
+    public String getTheOneComment() {
+        String quesId_temp = request.getParameter("quesId");
+        int quesId = Integer.parseInt(quesId_temp);
+        Map map = qaBackQuesService.getTheComment(quesId);  //接受返回map集合
+        map.put("status","0");
+        quesComment = JSONObject.fromObject(map);
+        return "one_comment";
+    }
+
+    /**
+     * 获取某个评论下的二级评论
+     * @return
+     */
+    public String getTheTwoComment() {
+        String pqId_temp = request.getParameter("pqId");
+        int pqId = Integer.parseInt(pqId_temp);
+        qaTwoComment = qaBackQuesService.getTheComment_two(pqId);  //接受返回map集合
+
+        return "two_comment";
+    }
+
+    public String topicIndex() {
+        topicList = frontIndexService.getTopicIndex();
+        return "topic_index";
     }
 
 
@@ -84,6 +125,29 @@ public class FrontIndexAction extends BaseAction{
 
     public void setTheQues(Map theQues) {
         this.theQues = theQues;
+    }
+    public JSONObject getQuesComment() {
+        return quesComment;
+    }
+
+    public void setQuesComment(JSONObject quesComment) {
+        this.quesComment = quesComment;
+    }
+
+    public Map getQaTwoComment() {
+        return qaTwoComment;
+    }
+
+    public void setQaTwoComment(Map qaTwoComment) {
+        this.qaTwoComment = qaTwoComment;
+    }
+
+    public Map getTopicList() {
+        return topicList;
+    }
+
+    public void setTopicList(Map topicList) {
+        this.topicList = topicList;
     }
 
 }

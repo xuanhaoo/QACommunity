@@ -21,6 +21,8 @@ public class FrontIndexServiceImpl implements FrontIndexService{
 
     @Resource
     private FrontIndexDao frontIndexDao;
+    @Resource
+    private QaBackQuesDao qaBackQuesDao;
     @Override
     public Map getQuesIndex(String pages, String orderTypes) {
         List<BackQuestion> questionList = new ArrayList<>();
@@ -88,10 +90,20 @@ public class FrontIndexServiceImpl implements FrontIndexService{
         return map;
     }
 
+    public Map getTheOneComm(int q_id) {
+
+        return null;
+    }
+
+    public Map getTheTwoComm(int pq_id) {
+        return null;
+    }
+
 
     @Override
     public Map getTopicIndex() {
-        return null;
+        Map map = this.frontIndexDao.getTopicIndex();
+        return map;
     }
 
 

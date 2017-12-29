@@ -8,7 +8,7 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>跳转问答社区...</title>
     <link type="text/css" rel="stylesheet" href="static/css/test.css" />
     <style>
     </style>
@@ -16,18 +16,17 @@
 <body>
 <div class="sign">
     <p class="onep">
-        welcome to here!
+        Welcome to here, QA!
     </p>
     <p class="twop">
         正在跳转......
     </p>
-    <form id="form1" runat="server">
-        <div id='div1'>
-        </div>
-    </form>
-
-
-
+    <div class="threep" style="margin-left: 120px;font-size: 22px;color: #bd0d13;">
+        <form id="form1" runat="server">
+            <div id='div1'>
+            </div>
+        </form>
+    </div>
 
 </div>
 

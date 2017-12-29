@@ -59,17 +59,29 @@ public class FrontIndexDaoImpl implements FrontIndexDao {
 
         Query query = sessionFactory.getCurrentSession().createSQLQuery(sql);
         List list = query.list();
+        count = list.size();
         firstRe = pages * limit;   //当前该显示的记录开始点
         lastRe = page * limit + limit;      //结束的点
         query.setFirstResult(firstRe);
         query.setMaxResults(lastRe);
+        map.put("count", count);
+        map.put("page",page);
+        map.put("orderType", orderType);
         map.put("list", list);
         return map;
     }
 
+    /**
+     * 获取话题列表
+     * @return
+     */
     @Override
     public Map getTopicIndex() {
-        return null;
+
+        Map map = new HashMap();
+        List list = sessionFactory.getCurrentSession().createQuery("from QaTopic order by sorted asc").list();
+        map.put("topicLists", list);
+        return map;
     }
 
 
@@ -104,5 +116,14 @@ public class FrontIndexDaoImpl implements FrontIndexDao {
         //存放入数组
         String[] labelNames  = (String[]) list.toArray(new String[list.size()]);
         return labelNames;
+    }
+
+    /**
+     * 获取所有的话题列表
+     * @return
+     */
+    public Map getTopicList() {
+
+        return null;
     }
 }

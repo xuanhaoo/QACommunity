@@ -25,8 +25,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="QA问答社区">
     <link rel="stylesheet" href="<%=basePath %>/static/plugins/layui/css/layui.css">
-    <link rel="stylesheet" href="<%=basePath %>static/css/global.css">
-    <link rel="stylesheet" href="<%=basePath %>static/css/front_index.css">
+    <link rel="stylesheet" href="<%=basePath %>/static/css/global.css">
+    <link rel="stylesheet" href="<%=basePath %>/static/css/front_index.css">
+    <style>
+        body .mytwolayer {
+            border-radius:10px;
+        }
+        body .mytwolayer .layui-layer-title{
+            border-radius:10px 10px 0 0;
+            background: #7c8c96;
+            color: #fff;
+        }
+        .login-style {
+            color: #0d71bb;
+        }
+    </style>
 </head>
 <body>
 <%--header部分--%>
@@ -36,14 +49,14 @@
             <img src="<%=basePath %>/static/images/logo.png" alt="layui">
         </a>
         <ul class="layui-nav fly-nav layui-hide-xs">
-            <li class="layui-nav-item layui-this">
-                <a href="/"><i class="iconfont icon-shouye"></i>首页</a>
+            <li class="layui-nav-item">
+                <a href="<%=basePath %>/index.jsp"><i class="iconfont icon-shouye"></i>首页</a>
+            </li>
+            <li class="layui-nav-item  layui-this">
+                <a href="<%=basePath %>/front/frontIndex_getQuestionIndex?page=1&orderType=1"><i class="iconfont icon-wenda"></i>问题</a>
             </li>
             <li class="layui-nav-item">
-                <a href="case/case.html"><i class="iconfont icon-wenda"></i>问题</a>
-            </li>
-            <li class="layui-nav-item">
-                <a href="http://www.layui.com/" target="_blank"><i class="iconfont icon-iconmingxinganli"></i>话题</a>
+                <a href="<%=basePath %>/front/frontIndex_topicIndex"><i class="iconfont icon-iconmingxinganli"></i>话题</a>
             </li>
         </ul>
 
@@ -123,7 +136,9 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md8 content detail">
             <div class="fly-panel detail-box">
+
                 <s:iterator value="theQues.question" var="tq">
+                    <input type="hidden" class="quesIdc" value="<s:property value="#tq.quesId"></s:property>">
                 <h1><s:property value="#tq.quesTitle"></s:property></h1>
                 <div class="fly-detail-info">
                     <span class="layui-badge fly-detail-column" style="background-color: #999;"><s:property value="#tq.topicName"></s:property></span>
@@ -163,8 +178,8 @@
                         <span><s:date name="#tq.createDate" format="yyyy年MM月dd日 hh:mm:ss"></s:date></span>
                     </div>
                     <div class="detail-hits" id="LAY_jieAdmin" data-id="123">
-                        <span style="padding-right: 10px; color: #FF7200">悬赏：60飞吻</span>
-                        <span class="layui-btn layui-btn-xs jie-admin" type="edit"><a href="add.html">编辑此贴</a></span>
+                        <span style="padding-right: 10px; color: #FF7200">悬赏：60声望</span>
+                        <span class="layui-btn layui-btn-xs jie-admin" type="edit"><a href="">关注此贴</a></span>
                     </div>
                 </div>
                 <div class="detail-body photos">
@@ -201,95 +216,10 @@
                     <legend>回帖</legend>
                 </fieldset>
 
-                <ul class="jieda" id="jieda">
-                    <li data-id="111" class="jieda-daan">
-                        <a name="item-1111111111"></a>
-                        <div class="detail-about detail-about-reply">
-                            <a class="fly-avatar" href="">
-                                <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" alt=" ">
-                            </a>
-                            <div class="fly-detail-user">
-                                <a href="" class="fly-link">
-                                    <cite>贤心</cite>
-                                    <i class="iconfont icon-renzheng" title="认证信息：XXX"></i>
-                                    <i class="layui-badge fly-badge-vip">VIP3</i>
-                                </a>
-
-                                <span>(楼主)</span>
-                                <!--
-                                <span style="color:#5FB878">(管理员)</span>
-                                <span style="color:#FF9E3F">（社区之光）</span>
-                                <span style="color:#999">（该号已被封）</span>
-                                -->
-                            </div>
-
-                            <div class="detail-hits">
-                                <span>2017-11-30</span>
-                            </div>
-
-                            <i class="iconfont icon-caina" title="最佳答案"></i>
-                        </div>
-                        <div class="detail-body jieda-body photos">
-                            <p>香菇那个蓝瘦，这是一条被采纳的回帖</p>
-                        </div>
-                        <div class="jieda-reply">
-              <span class="jieda-zan zanok" type="zan">
-                <i class="iconfont icon-zan"></i>
-                <em>66</em>
-              </span>
-                            <span type="reply">
-                <i class="iconfont icon-svgmoban53"></i>
-                回复
-              </span>
-                            <div class="jieda-admin">
-                                <span type="edit">编辑</span>
-                                <span type="del">删除</span>
-                                <!-- <span class="jieda-accept" type="accept">采纳</span> -->
-                            </div>
-                        </div>
-                    </li>
-
-                    <li data-id="111">
-                        <a name="item-1111111111"></a>
-                        <div class="detail-about detail-about-reply">
-                            <a class="fly-avatar" href="">
-                                <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" alt=" ">
-                            </a>
-                            <div class="fly-detail-user">
-                                <a href="" class="fly-link">
-                                    <cite>贤心</cite>
-                                </a>
-                            </div>
-                            <div class="detail-hits">
-                                <span>2017-11-30</span>
-                            </div>
-                        </div>
-                        <div class="detail-body jieda-body photos">
-                            <p>蓝瘦那个香菇，这是一条没被采纳的回帖</p>
-                        </div>
-                        <div class="jieda-reply">
-              <span class="jieda-zan" type="zan">
-                <i class="iconfont icon-zan"></i>
-                <em>0</em>
-              </span>
-                            <span type="reply">
-                <i class="iconfont icon-svgmoban53"></i>
-                回复
-              </span>
-                            <div class="jieda-admin">
-                                <span type="edit">编辑</span>
-                                <span type="del">删除</span>
-                                <span class="jieda-accept" type="accept">采纳</span>
-                            </div>
-                        </div>
-                    </li>
-
-                    <!-- 无数据时 -->
-                    <!-- <li class="fly-none">消灭零回复</li> -->
-                </ul>
-
+                <% if(frontUser != null){ %>
+                <%--回复框--%>
                 <div class="layui-form layui-form-pane">
-                    <form action="/jie/reply/" method="post">
+                    <form action="" method="post">
                         <div class="layui-form-item layui-form-text">
                             <a name="comment"></a>
                             <div class="layui-input-block">
@@ -302,70 +232,63 @@
                         </div>
                     </form>
                 </div>
+                <%--回复框--%>
+                <% }else {%>
+                <p class="" style="margin-left:37%">若要回复，请先 <a href="" class="login-style">登录</a> 或者 <a href="" class="login-style">注册</a> </p>
+                <% }%>
+                <hr class="layui-bg-gray">
+
+
+                <%--评论列表--%>
+                <ul class="jieda" id="jieda">
+
+                </ul>
             </div>
         </div>
         <div class="layui-col-md4">
-            <dl class="fly-panel fly-list-one">
-                <dt class="fly-panel-title">本周热议</dt>
-                <dd>
-                    <a href="">基于 layui 的极简社区页面模版</a>
-                    <span><i class="iconfont icon-pinglun1"></i> 16</span>
-                </dd>
-                <dd>
-                    <a href="">基于 layui 的极简社区页面模版</a>
-                    <span><i class="iconfont icon-pinglun1"></i> 16</span>
-                </dd>
-                <dd>
-                    <a href="">基于 layui 的极简社区页面模版</a>
-                    <span><i class="iconfont icon-pinglun1"></i> 16</span>
-                </dd>
-                <dd>
-                    <a href="">基于 layui 的极简社区页面模版</a>
-                    <span><i class="iconfont icon-pinglun1"></i> 16</span>
-                </dd>
-                <dd>
-                    <a href="">基于 layui 的极简社区页面模版</a>
-                    <span><i class="iconfont icon-pinglun1"></i> 16</span>
-                </dd>
-                <dd>
-                    <a href="">基于 layui 的极简社区页面模版</a>
-                    <span><i class="iconfont icon-pinglun1"></i> 16</span>
-                </dd>
-                <dd>
-                    <a href="">基于 layui 的极简社区页面模版</a>
-                    <span><i class="iconfont icon-pinglun1"></i> 16</span>
-                </dd>
-                <dd>
-                    <a href="">基于 layui 的极简社区页面模版</a>
-                    <span><i class="iconfont icon-pinglun1"></i> 16</span>
-                </dd>
-                <dd>
-                    <a href="">基于 layui 的极简社区页面模版</a>
-                    <span><i class="iconfont icon-pinglun1"></i> 16</span>
-                </dd>
-                <dd>
-                    <a href="">基于 layui 的极简社区页面模版</a>
-                    <span><i class="iconfont icon-pinglun1"></i> 16</span>
-                </dd>
 
-                <!-- 无数据时 -->
-                <!--
-                <div class="fly-none">没有相关数据</div>
-                -->
-            </dl>
+            <div class="fly-panel">
+                <h3 class="fly-panel-title">温馨通道</h3>
+                <ul class="fly-panel-main fly-list-static">
+                    <li>
+                        <a href="http://fly.layui.com/jie/4281/" target="_blank">layui 的 GitHub 及 Gitee (码云) 仓库，欢迎Star</a>
+                    </li>
+                    <li>
+                        <a href="http://fly.layui.com/jie/5366/" target="_blank">
+                            layui 常见问题的处理和实用干货集锦
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://fly.layui.com/jie/4281/" target="_blank">Lavel问答知道</a>
+                    </li>
+                    <li>
+                        <a href="http://fly.layui.com/jie/5366/" target="_blank">
+                            Laravel社区，中文网官方社区
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://fly.layui.com/jie/4281/" target="_blank">知乎，你的问题专家</a>
+                    </li>
+                </ul>
+            </div>
 
             <div class="fly-panel">
                 <div class="fly-panel-title">
-                    这里可作为广告区域
+                    推荐
                 </div>
                 <div class="fly-panel-main">
-                    <a href="http://layim.layui.com/?from=fly" target="_blank" class="fly-zanzhu" time-limit="2017.09.25-2099.01.01" style="background-color: #5FB878;">LayIM 3.0 - layui 旗舰之作</a>
+                    <a href="http://layim.layui.com/?from=fly" target="_blank" class="fly-zanzhu" time-limit="2017.09.25-2099.01.01" style="background-color: #5FB878;">QAIM 3.0 - QA 旗舰之作</a>
                 </div>
             </div>
 
-            <div class="fly-panel" style="padding: 20px 0; text-align: center;">
-                <img src="../../res/images/weixin.jpg" style="max-width: 100%;" alt="layui">
-                <p style="position: relative; color: #666;">微信扫码关注 layui 公众号</p>
+            <div class="fly-panel fly-link">
+                <h3 class="fly-panel-title">友情链接</h3>
+                <dl class="fly-panel-main">
+                    <dd><a href="http://www.layui.com/" target="_blank">layui</a><dd>
+                    <dd><a href="http://layim.layui.com/" target="_blank">WebIM</a><dd>
+                    <dd><a href="http://layer.layui.com/" target="_blank">layer</a><dd>
+                    <dd><a href="http://www.layui.com/laydate/" target="_blank">layDate</a><dd>
+                </dl>
             </div>
 
         </div>
@@ -379,6 +302,7 @@
 <script src="<%=basePath %>/static/plugins/js/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src="<%=basePath%>/static/plugins/layui/layui.js"></script>
 <script>
+
     layui.cache.page = 'jie';
     layui.cache.user = {
         username: '游客'
@@ -389,18 +313,125 @@
     };
     layui.config({
         version: "2.0.0"
-        ,base: '../../res/mods/'
+        ,base: '<%=basePath %>/static/plugins/layui/resmods/'
     }).extend({
         fly: 'index'
-    }).use('fly', function(){
-        var fly = layui.fly;
-        //如果你是采用模版自带的编辑器，你需要开启以下语句来解析。
-        /*
-        $('.detail-body').each(function(){
-          var othis = $(this), html = othis.html();
-          othis.html(fly.content(html));
+    }).use(['fly','laydate','table','laytpl','layer'], function() {
+        var fly = layui.fly;        //回复框，判断登录session
+        var table = layui.table;
+        var laydate = layui.laydate;
+        var laytpl = layui.laytpl;
+        var layer = layui.layer;
+
+
+        var quesId = $(".quesIdc").val();
+        //初始化ajax加载评论
+        $.ajax({
+            url: '<%=path%>/front/frontIndex_getTheOneComment.action'
+            , data: {'quesId':quesId}
+            , dataType: 'json'
+            // 返回成功的
+            , success: function (data) {
+                if (data.status == "0") {
+                    getComment_one(data);
+                } else {
+
+                }
+            }
+            ,complete:function() {
+
+            }
         });
-        */
+
+
+        /**
+         *获取到json数据对其进行组装，嵌入评论页
+         * */
+        function getComment_one(data) {
+            var commList = data.commList;
+            var html;
+            if(commList.length != 0) {
+
+                $.each(commList, function(index, item) {
+                    var date = new Date(item.createDate['time']).toLocaleDateString();
+                    var time = new Date(item.createDate['time']).toLocaleTimeString();
+                    var dateTime = date + " " + time;
+                    html = '<li>'+
+                        '<div class="detail-about detail-about-reply">'+
+                        '<a class="fly-avatar" href="">'+
+                        '<img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" alt=" ">'+
+                        '</a>'+
+                        '<div class="fly-detail-user">'+
+                        '<a href="" class="fly-link">'+
+                        '<cite>'+item.accountName+'</cite>'+
+                        '</a>'+
+                        '</div>'+
+                        '<div class="detail-hits">'+
+                        '<span>'+dateTime+'</span>'+
+                        '</div>'+
+                        '</div>'+
+                        '<div class="detail-body jieda-body photos">'+
+                        '<p>'+item.content+'</p>'+
+                        '</div>'+
+                        ' <div class="jieda-reply">'+
+                        '<span class="jieda-zan" type="zan">'+
+                        '<i class="iconfont icon-zan"></i>'+
+                        '<em>'+item.likes+'</em>'+
+                        '</span>'+
+                        '<span type="reply" class="getTwoComm" data-id="'+item.commId+'">'+
+                        '<i class="iconfont icon-svgmoban53"></i>查看回复'+
+                        '</span>'+
+                        '<div class="jieda-admin">'+
+                        '<span class="jieda-accept addTheComm">添加回复</span>'+
+                        '</div>'+
+                        '</div>'+
+                        '</li>';
+
+                    $("#jieda").append(html);
+                });
+            }else {
+                    html = '<p style="margin-top:30px;margin-left:37%">:( 暂无评论喔~~~,  &nbsp;快来抢沙发吧！</p>';
+                    $("#jieda").append(html);
+            }
+
+
+        }
+
+
+        /**
+         * 查看单个评论下的二级评论
+         */
+        $(document).on('click', '.getTwoComm', function() {
+            var commId = $(this).data("id");
+            var two_commentUrl = "<%=path%>/front/frontIndex_getTheTwoComment.action?pqId="+commId;
+            layer.open({
+                title: '二级评论',
+                type: 2,
+                shadeClose: true,
+                shade: 0.2,
+                fix:true,
+                shift: 2,
+                maxmin: true,
+                area: ['700px', '550px'],
+                content: two_commentUrl,
+                scrollbar: false,
+                skin:'mytwolayer'
+            });
+        });
+
+        /**
+         * 对单个评论进行回复添加
+         */
+        $(document).on('click', '.addTheComm', function() {
+            console.log("123");
+            //判断是否已经登录
+            if((<%=frontUser%>) != null) {
+                console.log("111");
+                //登录后的layer弹窗表单
+            }else {
+                layer.msg("请先登录哦！", {time: 1000,icon: 3});
+            }
+        });
     });
 </script>
 
