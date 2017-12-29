@@ -19,6 +19,15 @@ public class BackQuestion {
     private String accountName;
     private BigInteger commentCount;        //评论统计
     private BigInteger browseCount;         //浏览统计
+    private String headPhoto;   //头像
+
+    public String getHeadPhoto() {
+        return headPhoto;
+    }
+
+    public void setHeadPhoto(String headPhoto) {
+        this.headPhoto = headPhoto;
+    }
 
     public int getQuesId() {
         return quesId;

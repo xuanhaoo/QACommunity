@@ -37,31 +37,72 @@ public class FrontIndexDaoImpl implements FrontIndexDao {
         int count = 0;              // 查询到总数
         int pages;           //页码,int型变量，默认为空
         int limit = 15;         //每页的显示数
+        String orderString;     //排序
         if(page == 0) {
             pages = 0;
         }else {
             pages = page - 1;
         }
+        if(orderType == 1) {
+            orderString = "createDate";
+        }else{
+            orderString = "commNum";
+        }
         Map map = new HashMap();
-//        select t1.q_id as qId,t1.title as qTitle,t1.detail as qDetail,t1.create_date as createDate,t2.to_id as toId,t2.topic_name as topicName,
-//        t3.name as accountName,count(DISTINCT t4.c_id) commNum, COUNT(DISTINCT t6.id)browNum from qa_question as t1
-//        left join qa_topic t2 on t1.topic_id=t2.to_id
-//        left join qa_front_user t3 on t1.create_user=t3.id
-//        left join qa_comment t4 on t1.q_id=t4.question_id
-//        left join qa_question_browse t6 on t1.q_id=t6.q_id
-//        group by t1.q_id;
-        String sql = "";
+        String sql = "select t1.q_id as qId,t1.title as qTitle,t1.create_date as createDate,t2.to_id as toId,t2.topic_name as topicName," +
+                " t3.name as accountName,t3.photo as userPhoto,count(DISTINCT t4.c_id) commNum, count(DISTINCT t6.id)browNum from qa_question as t1" +
+                " left join qa_topic t2 on t1.topic_id=t2.to_id" +
+                " left join qa_front_user t3 on t1.create_user=t3.id" +
+                " left join qa_comment t4 on t1.q_id=t4.question_id" +
+                " left join qa_question_browse t6 on t1.q_id=t6.q_id" +
+                " group by t1.q_id order by "+orderString+" desc";
 
         Query query = sessionFactory.getCurrentSession().createSQLQuery(sql);
         List list = query.list();
         firstRe = pages * limit;   //当前该显示的记录开始点
         lastRe = page * limit + limit;      //结束的点
-
-        return null;
+        query.setFirstResult(firstRe);
+        query.setMaxResults(lastRe);
+        map.put("list", list);
+        return map;
     }
 
     @Override
     public Map getTopicIndex() {
         return null;
+    }
+
+
+    /**
+     * 获取问题详情
+     * @return
+     */
+    public Map getTheQuesInfo(int quesId) {
+        Map map = new HashMap();
+        String sql = "select t1.q_id as qId,t1.title as qTitle,t1.detail as quesDetail,t1.label_ids as labels,t1.create_date as createDate,t2.to_id as toId,t2.topic_name as topicName," +
+                " t3.name as accountName,t3.photo as userPhoto,count(DISTINCT t4.c_id) commNum, count(DISTINCT t6.id)browNum from qa_question as t1" +
+                " left join qa_topic t2 on t1.topic_id=t2.to_id" +
+                " left join qa_front_user t3 on t1.create_user=t3.id" +
+                " left join qa_comment t4 on t1.q_id=t4.question_id" +
+                " left join qa_question_browse t6 on t1.q_id=t6.q_id" +
+                " WHERE t1.q_id = "+quesId+" group by t1.q_id";
+        Query query = sessionFactory.getCurrentSession().createSQLQuery(sql);
+        List list = query.list();
+        map.put("list",list);
+        return map;
+    }
+
+    /**
+     * 查询问题时返回的标签字符集
+     * 获取当前问题包含的标签
+     * @param labelStr
+     * @return
+     */
+    public String[] LabelList(String labelStr) {
+        String sql = "select label_name from qa_label where l_id in ("+labelStr+")";
+        List list = sessionFactory.getCurrentSession().createSQLQuery(sql).list();
+        //存放入数组
+        String[] labelNames  = (String[]) list.toArray(new String[list.size()]);
+        return labelNames;
     }
 }

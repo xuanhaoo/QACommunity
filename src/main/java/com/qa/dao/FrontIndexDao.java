@@ -22,4 +22,12 @@ public interface FrontIndexDao {
      * @return
      */
     public Map getTopicIndex();
+
+    /**
+     * 获取该问题的详情
+     * @return
+     */
+    public Map getTheQuesInfo(int quesId);
+
+    public String[] LabelList(String labelStr);
 }
