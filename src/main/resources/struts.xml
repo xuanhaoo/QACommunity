@@ -91,6 +91,23 @@
             <result name="detail_ques">/detail_ques.jsp</result>
 
         </action>
+
+        <!--FrontUser, 前台用户管理-->
+        <action name="FrontUser_*" class="com.qa.action.FrontUserAction" method="{1}">
+            <result name="checkAccount" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="addUser" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="register">/register.jsp</result>
+
+            <result name="checkLogin" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="login">/login.jsp</result>
+
+        </action>
     </package>
 
 
