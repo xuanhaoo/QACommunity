@@ -92,6 +92,11 @@
         <action name="frontIndex_*" class="com.qa.action.FrontIndexAction" method="{1}">
             <result name="front_index">/front_index.jsp</result>
             <result name="detail_ques">/detail_ques.jsp</result>
+            <result name="one_comment" type="json">
+                <param name="root">quesComment</param>
+            </result>
+            <result name="two_comment">/two_commentLayer.jsp</result>
+            <result name="topic_index">/topic_index.jsp</result>
 
         </action>
 

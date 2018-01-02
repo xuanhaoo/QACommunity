@@ -12,4 +12,9 @@ public interface FrontIndexService {
     public Map getTopicIndex();
 
     public Map getTheQuesInfo(int quesId);
+
+    public Map getTheOneComm(int q_id);
+
+    public Map getTheTwoComm(int pq_id);
+
 }

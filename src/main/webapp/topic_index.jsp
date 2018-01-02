@@ -16,8 +16,8 @@
     String frontUser = (String) session.getAttribute("frontUser");
 %>
 <%--<s:iterator value="quesList.quesLists" var="qq">--%>
-    <%--<s:property value="#qq.quesTitle"></s:property>--%>
-    <%--<br>--%>
+<%--<s:property value="#qq.quesTitle"></s:property>--%>
+<%--<br>--%>
 <%--</s:iterator>--%>
 <!DOCTYPE html>
 <html>
@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="<%=basePath %>/static/plugins/layui/css/layui.css">
     <link rel="stylesheet" href="<%=basePath %>/static/css/global.css">
     <link rel="stylesheet" href="<%=basePath %>/static/css/front_index.css">
+    <link rel="stylesheet" href="<%=basePath %>/static/css/topic_index.css">
 </head>
 <body>
 <%--header部分--%>
@@ -41,10 +42,10 @@
             <li class="layui-nav-item">
                 <a href="<%=basePath %>/index.jsp"><i class="iconfont icon-shouye"></i>首页</a>
             </li>
-            <li class="layui-nav-item  layui-this">
+            <li class="layui-nav-item">
                 <a href="<%=basePath %>/front/frontIndex_getQuestionIndex?page=1&orderType=1"><i class="iconfont icon-wenda"></i>问题</a>
             </li>
-            <li class="layui-nav-item">
+            <li class="layui-nav-item layui-this">
                 <a href="<%=basePath %>/front/frontIndex_topicIndex"><i class="iconfont icon-iconmingxinganli"></i>话题</a>
             </li>
         </ul>
@@ -98,53 +99,25 @@
             <div class="fly-panel" style="margin-bottom: 0;">
 
                 <div class="fly-panel-title fly-filter">
-                   <i class="layui-icon">&#xe68e;</i>&nbsp;发现
-                    <%--<span class="fly-mid"></span>--%>
-                    <%--<a href="">未结</a>--%>
-                    <%--<span class="fly-mid"></span>--%>
-                    <%--<a href="">已结</a>--%>
-                    <%--<span class="fly-mid"></span>--%>
-                    <%--<a href="">精华</a>--%>
-                    <span class="fly-filter-right layui-hide-xs">
-                        <a href="javascript:;" class="layui-this" id="byNew">按最新</a>
-                        <span class="fly-mid"></span>
-                        <a href="javascript:;" id="byHot" class="">按热议</a>
-                    </span>
+                    <i class="iconfont icon-iconmingxinganli"></i>&nbsp;话题
+
+
                 </div>
-                <%--问题循环开始--%>
-                <ul class="fly-list">
-                    <%--问题循环--%>
-                      <s:iterator value="quesList.quesLists" var="qq">
-                          <li>
-                              <a href="user/home.html" class="fly-avatar">
-                                  <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" alt="贤心">
-                              </a>
-                              <h2>
-                                  <a class="layui-badge"><s:property value="#qq.topicName"></s:property></a>
-                                  <a href="javascript:;" class="quesDetail" data-id="<s:property value="#qq.quesId"></s:property>"><s:property value="#qq.quesTitle"></s:property></a>
-                              </h2>
-                              <div class="fly-list-info">
-                                  <a href="user/home.html" link>
-                                      <cite><s:property value="#qq.accountName"></s:property></cite>
-                                  </a>
-                                  <span><s:date name="#qq.createDate" format="yyyy年MM月dd日 hh:mm:ss"></s:date></span>
 
-                                  <span class="fly-list-nums">
-                                      <i class="iconfont" title="浏览">&#xe60b;</i><s:property value="#qq.browseCount"></s:property>
-                                      <i class="iconfont icon-pinglun1" title="回复"></i><s:property value="#qq.commentCount"></s:property>
-                                  </span>
-                              </div>
-                              <div class="fly-list-badge">
-                                  <!--<span class="layui-badge layui-bg-red">精帖</span>-->
-                              </div>
-                          </li>
-                      </s:iterator>
-
-                </ul>
-                <div style="text-align: center">
-                    <div class="" id="pages">
-
-                    </div>
+                <%--话题循环开始--%>
+                <div class="ui cards" style="margin:10px 20px 10px 20px;    ">
+                    <s:iterator value="topicList.topicLists" var="tt">
+                        <div class="card">
+                            <div class="content">
+                                <div class="header"><a href="" class="layui-btn layui-btn-xs topic-style"><s:property value="#tt.topicName"></s:property></a></div>
+                                <%--<div class="meta">好友</div>--%>
+                                <div class="description"><s:property value="#tt.remarks"></s:property> </div>
+                            </div>
+                            <div class="extra content">
+                                <span class="right floated"><s:date name="#tt.createDate" format="yyyy年MM月dd日"></s:date>&nbsp;添加</span>
+                            </div>
+                        </div>
+                    </s:iterator>
                 </div>
 
             </div>
@@ -258,47 +231,11 @@
 <script src="<%=basePath %>/static/plugins/js/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src="<%=basePath%>/static/plugins/layui/layui.js"></script>
 <script>
-    layui.use(['laydate','laypage','laytpl','layer'], function() {
-        var laypage = layui.laypage;
+    layui.use(['laydate','table','laytpl','layer'], function() {
+        var table = layui.table;
         var laydate = layui.laydate;
         var laytpl = layui.laytpl;
         var layer = layui.layer;
-
-
-        var orderCode = "<s:property value="quesList.orderType" />";   //定义排序代号
-
-        $("#byNew").on('click', function() {
-            orderCode = 1;
-            window.location.href = "<%=basePath %>/front/frontIndex_getQuestionIndex?page=1&orderType="+orderCode;
-        });
-        $("#byHot").on('click', function() {
-
-            orderCode = 2;
-            window.location.href = "<%=basePath %>/front/frontIndex_getQuestionIndex?page=1&orderType="+orderCode;
-        });
-        var counts = "<s:property value="quesList.count" />";
-        var curr = "<s:property value="quesList.page" />";
-        //执行一个laypage实例
-        laypage.render({
-            elem: 'pages' //注意，这里的是 ID，不用加 # 号
-            ,count: counts //数据总数，从服务端得到
-            ,limit: 15
-            ,curr: curr
-            ,group:6
-            ,theme: '#1E9FFF'
-            ,curr: curr
-            ,jump: function(obj, first) {
-                var curr = obj.curr;
-                if(!first) {
-                    window.location.href = "<%=basePath %>/front/frontIndex_getQuestionIndex?page="+curr+"&orderType="+orderCode;
-                }
-            }
-        });
-
-        $(".quesDetail").on('click', function() {
-            var quesId = $(this).data("id");
-            window.location.href = "<%=basePath %>/front/frontIndex_getTheQuestion?quesId="+quesId;
-        });
     });
 </script>
 

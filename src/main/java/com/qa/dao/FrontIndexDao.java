@@ -30,4 +30,7 @@ public interface FrontIndexDao {
     public Map getTheQuesInfo(int quesId);
 
     public String[] LabelList(String labelStr);
+
+
+    public Map getTopicList();
 }
