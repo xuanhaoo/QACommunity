@@ -41,7 +41,7 @@ public class FrontUserFilter extends HttpServlet implements Filter {
             chain.doFilter(request, response);
         }else {
             //不在url之外则进行判断session
-            if(request.getSession().getAttribute("FrontUser") == null) {
+            if(request.getSession().getAttribute("frontUser") == null) {
                 //保存当前客户想要去的url地址
                 String goURL = request.getServletPath();//获得用户想要去的地址
                 String param = request.getQueryString(); //获得地址中携带的参数
@@ -53,7 +53,7 @@ public class FrontUserFilter extends HttpServlet implements Filter {
 
                 //非法请求，跳转到登陆页面
                 request.getSession().setAttribute("error", "非法请求，请登录！");
-                response.sendRedirect(request.getContextPath() + "/frontUser/login");
+                response.sendRedirect(request.getContextPath() + "/user/login.jsp");
 
             }else {
                 //如果有下一个过滤器则跳转，否则直接到目标页面

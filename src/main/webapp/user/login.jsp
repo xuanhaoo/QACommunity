@@ -1,4 +1,5 @@
 <%@ page import="com.qa.entity.QaFrontUser" %>
+<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%
@@ -7,7 +8,7 @@
 
 %>
 <%
-  QaFrontUser frontUser = (QaFrontUser) session.getAttribute("frontUser");
+  Map frontUser = (Map) session.getAttribute("frontUser");
 %>
 
 <!DOCTYPE html>
@@ -64,10 +65,10 @@
         <a class="iconfont icon-touxiang layui-hide-xs" href="user/login.html"></a>
       </li>
       <li class="layui-nav-item">
-        <a href="<%=path%>/front/FrontUser_UserLogin.action" class="layui-btn layui-btn-sm login-btn" style="background: #5dade2; color:#fff;">登录</a>
+        <a href="<%=path%>/frontUser/FrontUser_UserLogin.action" class="layui-btn layui-btn-sm login-btn" style="background: #5dade2; color:#fff;">登录</a>
       </li>
       <li class="layui-nav-item">
-        <a href="<%=path%>/front/FrontUser_registerUser.action" class="layui-btn  layui-btn-sm regist-btn" style="margin-left: 9px;background: #1abc9c;color:#fff;">注册</a>
+        <a href="<%=path%>/frontUser/FrontUser_registerUser.action" class="layui-btn  layui-btn-sm regist-btn" style="margin-left: 9px;background: #1abc9c;color:#fff;">注册</a>
       </li>
       <li class="layui-nav-item layui-hide-xs">
         <a href="/app/qq/" onclick="layer.msg('正在通过QQ登入', {icon:16, shade: 0.1, time:0})" title="QQ登入" class="iconfont icon-qq"></a>
@@ -90,7 +91,7 @@
 
       <ul class="layui-tab-title">
         <li class="layui-this">登入</li>
-        <li><a href="<%=path%>/front/FrontUser_registerUser.action">注册</a></li>
+        <li><a href="<%=path%>/frontUser/FrontUser_registerUser.action">注册</a></li>
       </ul>
 
       <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
@@ -183,15 +184,15 @@
                 btn: ['确认', '取消'] //按钮
             }, function () {
                 $.ajax({
-                    url: "<%=path%>/front/FrontUser_checkLogin.action",
+                    url: "<%=path%>/frontUser/FrontUser_checkLogin.action",
                     type: "POST",
                     data: data.field,
                     beforeSend: function () {
                         //
                     },
                     success: function (data2) {
-                        if (data2 == "1") {
-                            layer.msg("登录成功!", {time: 1000, icon: 1}, function () {location.reload("<%=basePath %>/front/frontIndex_getQuestionIndex.action?page=1&orderType=1");});
+                        if (data2 === "1") {
+                            layer.msg("登录成功!", {time: 1000, icon: 1}, function () {location.replace("<%=basePath %>/frontUser/FrontUser_userIndex.action");});
                         } else {
                             layer.msg("登录失败,请检查账户名或密码是否正确!", {time: 1000, icon: 2});
                         }

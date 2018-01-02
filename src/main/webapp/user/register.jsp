@@ -64,10 +64,10 @@
         <a class="iconfont icon-touxiang layui-hide-xs" href="user/login.html"></a>
       </li>
       <li class="layui-nav-item">
-        <a href="<%=path%>/front/FrontUser_UserLogin.action" class="layui-btn layui-btn-sm login-btn" style="background: #5dade2; color:#fff;">登录</a>
+        <a href="<%=path%>/frontUser/FrontUser_UserLogin.action" class="layui-btn layui-btn-sm login-btn" style="background: #5dade2; color:#fff;">登录</a>
       </li>
       <li class="layui-nav-item">
-        <a href="<%=path%>/front/FrontUser_registerUser.action" class="layui-btn  layui-btn-sm regist-btn" style="margin-left: 9px;background: #1abc9c;color:#fff;">注册</a>
+        <a href="<%=path%>/frontUser/FrontUser_registerUser.action" class="layui-btn  layui-btn-sm regist-btn" style="margin-left: 9px;background: #1abc9c;color:#fff;">注册</a>
       </li>
       <li class="layui-nav-item layui-hide-xs">
         <a href="/app/qq/" onclick="layer.msg('正在通过QQ登入', {icon:16, shade: 0.1, time:0})" title="QQ登入" class="iconfont icon-qq"></a>
@@ -87,7 +87,7 @@
     <div class="layui-tab layui-tab-brief" lay-filter="user">
 
       <ul class="layui-tab-title">
-        <li><a href="<%=path%>/front/FrontUser_UserLogin.action">登入</a></li>
+        <li><a href="<%=path%>/frontUser/FrontUser_UserLogin.action">登入</a></li>
         <li class="layui-this">注册</li>
       </ul>
 
@@ -195,7 +195,7 @@
               if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)) {
                   return '用户名不能有特殊字符';
               }
-              if (/(^\_)|(\__)|(\_+$)/.test(value)) {
+              if (/(^•••\_)|(\__)|(\_+$)/.test(value)) {
                   return '用户名首尾不能出现下划线\'_\'';
               }
               if (/^\d+\d+\d$/.test(value)) {
@@ -210,7 +210,7 @@
               // 必须使用方法,否则执行顺序为先判断flag,后执行ajax,即flag始终为false
               function checkU(){
                   $.ajax({
-                      url: "<%=path%>/front/FrontUser_checkAccount.action",
+                      url: "<%=path%>/frontUser/FrontUser_checkAccount.action",
                       type: "POST",
                       async:false,
                       data: {"name":value},
@@ -252,7 +252,7 @@
             }, function () {
                 layer.msg('已提交！', {icon: 1});
                 $.ajax({
-                    url: "<%=path%>/front/FrontUser_addUser.action",
+                    url: "<%=path%>/frontUser/FrontUser_addUser.action",
                     type: "POST",
                     data: data.field,
                     beforeSend: function () {

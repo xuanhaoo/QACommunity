@@ -32,7 +32,7 @@
         <init-param>
             <!--排除过滤的路径url-->
             <param-name>excludedPages</param-name>
-            <param-value></param-value>
+            <param-value>/user/login.jsp,/user/register.jsp,/frontUser/FrontUser_checkAccount.action,/frontUser/FrontUser_checkLogin.action,/frontUser/FrontUser_UserLogin.action,/frontUser/FrontUser_registerUser.action,/frontUser/FrontUser_addUser.action</param-value>
         </init-param>
     </filter>
     <!--过滤路径 , /frontUser/下的所有操作-->

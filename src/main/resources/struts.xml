@@ -12,6 +12,9 @@
     <!--配置静态资源不过滤-->
     <constant name="struts.action.excludePattern" value="/static/.*?" /><!-- default locale -->
 
+    <!--文件上传临时文件夹-->
+    <!--<constant name="struts.multipart.saveDir" value="/tmp"/>-->
+
     <constant name="struts.i18n.encoding" value="UTF-8" />
     <!--admin包-->
     <package name="admin" namespace="/admin" extends="json-default">
@@ -92,7 +95,13 @@
 
         </action>
 
-        <!--FrontUser, 前台用户管理-->
+    </package>
+
+
+    <!--前台用户登录后，进行的一系列操作， 过滤验证配置见 web.xml-->
+    <package name="frontUser" namespace="/frontUser" extends="json-default">
+
+        <!--前台用户管理-->
         <action name="FrontUser_*" class="com.qa.action.FrontUserAction" method="{1}">
             <result name="checkAccount" type="json">
                 <param name="root">status</param>
@@ -100,19 +109,30 @@
             <result name="addUser" type="json">
                 <param name="root">status</param>
             </result>
-            <result name="register">/register.jsp</result>
-
+            <result name="register">/user/register.jsp</result>
             <result name="checkLogin" type="json">
                 <param name="root">status</param>
             </result>
-            <result name="login">/login.jsp</result>
-
+            <result name="logout" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="userUpdate" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="checkPass" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="userPass" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="uploadPhoto" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="login">/user/login.jsp</result>
+            <result name="userIndex">/user/index.jsp</result>
+            <result name="userHome">/user/home.jsp</result>
+            <result name="userSet">/user/set.jsp</result>
         </action>
-    </package>
-
-
-    <!--前台用户登录后，进行的一系列操作， 过滤验证配置见 web.xml-->
-    <package name="frontUser" namespace="/frontUser" extends="json-default">
 
     </package>
 
