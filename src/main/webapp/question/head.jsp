@@ -1,12 +1,12 @@
 <%@ page import="java.util.Map" %><%--
   Created by IntelliJ IDEA.
   User: pjy
-  Date: 18-1-1
-  Time: 下午1:26
+  Date: 18-1-2
+  Time: 下午11:52
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="s" uri="/struts-tags"%>
+
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -14,7 +14,6 @@
 %>
 <%
     Map frontUser = (Map) session.getAttribute("frontUser");
-
 %>
 
 <div class="fly-header layui-bg-cyan">
@@ -35,6 +34,8 @@
         </ul>
 
         <ul class="layui-nav fly-nav-user">
+
+            <% if(frontUser != null){ %>
             <!-- 登入的状态 -->
             <li class="layui-nav-item">
                 <a class="fly-nav-avatar" href="javascript:;">
@@ -48,9 +49,24 @@
                     <dd id="logout"><a style="text-align: center;">退出</a></dd>
                 </dl>
             </li>
+            <% }else {%>
+            <!-- 未登入的状态 -->
+            <li class="layui-nav-item">
+                <a class="iconfont icon-touxiang layui-hide-xs" href="user/login.html"></a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="<%=basePath %>/user/login.jsp" class="layui-btn layui-btn-sm login-btn" style="background: #5dade2; color:#fff;">登录</a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="<%=basePath %>/user/register.jsp" class="layui-btn  layui-btn-sm regist-btn" style="margin-left: 9px;background: #1abc9c;color:#fff;">注册</a>
+            </li>
+            <%--<li class="layui-nav-item layui-hide-xs">--%>
+            <%--<a href="/app/qq/" onclick="layer.msg('正在通过QQ登入', {icon:16, shade: 0.1, time:0})" title="QQ登入" class="iconfont icon-qq"></a>--%>
+            <%--</li>--%>
+            <%--<li class="layui-nav-item layui-hide-xs">--%>
+            <%--<a href="/app/weibo/" onclick="layer.msg('正在通过微博登入', {icon:16, shade: 0.1, time:0})" title="微博登入" class="iconfont icon-weibo"></a>--%>
+            </li>
+            <% }%>
         </ul>
-
-
     </div>
 </div>
-

@@ -100,6 +100,13 @@
 
         </action>
 
+        <action name="frontQuestion_*" class="com.qa.action.FrontQuestionAction" method="{1}">
+            <result name="questionReply" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="questionDetail">/question/detail.jsp</result>
+        </action>
+
     </package>
 
 
