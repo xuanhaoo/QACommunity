@@ -1,4 +1,5 @@
-<%--
+<%@ page import="com.opensymphony.xwork2.ActionContext" %>
+<%@ page import="java.util.Map" %><%--
   Created by IntelliJ IDEA.
   User: Mr.liang
   Date: 2017/12/6
@@ -72,10 +73,11 @@
                         An hao
                         <b class="caret"></b>
                     </a>
+                    <% Map session1 = ActionContext.getContext().getSession();%>
                     <div class="collapse" id="collapseExample">
                         <ul class="nav">
-                            <li><a href="#">个人信息</a></li>
-                            <li><a href="#">修改密码</a></li>
+                            <li><a href="<%=basePath%>/admin/BackInfo_FindBackInfo.action?username=<%=session1.get("user")%>"  target="iframepage">个人信息</a></li>
+
                             <li><a href="#">设置</a></li>
                         </ul>
                     </div>
@@ -114,6 +116,7 @@
                     </a>
                     <div class="collapse" id="formsExamples">
                         <ul class="nav">
+                            <li><a href="<%=basePath %>/admin/qaBackTopic_FindAllTopic.action" target="iframepage">话题管理</a></li>
                             <li><a href="<%=basePath %>/admin/qaBackLabel_getAllLabel.action" target="iframepage">标签管理</a></li>
                             <li><a href="<%=basePath %>/admin/qaBackQues_allQuestionView.action" target="iframepage">内容管理</a></li>
                         </ul>

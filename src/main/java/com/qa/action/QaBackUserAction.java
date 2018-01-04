@@ -60,7 +60,9 @@ public class QaBackUserAction extends BaseAction {
         //检查登录信息是否正确
         if(qaBackUserService.login(qaBackUser)) {
             Map session = ActionContext.getContext().getSession();
+
             session.put("qaBackUser", qaBackUser);//存入session
+            session.put("user",qaBackUser.getAccount());
             //return SUCCESS;
             status = "0";  //成功状态码
 

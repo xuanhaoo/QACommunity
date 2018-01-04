@@ -373,7 +373,8 @@
          * 对单个评论进行回复添加
          */
         $(document).on('click', '.addTheComm', function() {
-            var front = <%=frontUser.get("id")%>;
+            var front = null;
+            front = <%=frontUser.get("id")%>;
             //判断是否已经登录
             if(front != null) {
                 var commId = $(this).data("id");

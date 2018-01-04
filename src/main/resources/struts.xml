@@ -83,6 +83,18 @@
             <result name="communityList">/admin/community.jsp</result>
             <result name="editUser">/admin/edit_community.jsp</result>
         </action>
+        <action name="BackInfo_*" class="com.qa.action.BackInfoAction" method="{1}">
+            <result name="FindBackInfo">/admin/BackInfo/BackInfo.jsp</result>
+            <result name="updateInfoSuccess" type="redirect">/admin/BackInfo/BackInfo_FindBackInfo.action?username=${account}</result>
+            <result name="updateInfoPssuccess" type="redirect">/admin/BackInfo/BackInfo_FindBackInfo.action?username=${account}</result>
+        </action>
+        <action name="qaBackTopic_*" class="com.qa.action.qaBackTopicAction" method="{1}">
+            <result name="FindAllTopic">/admin/Topic/topic.jsp</result>
+            <result name="DeleteSuccess" type="redirect" >/admin/Topic/qaBackTopic_FindAllTopic.action</result>
+            <result name="UpdateSuccess" type="redirect">/admin/Topic/qaBackTopic_FindAllTopic.action</result>
+            <result name="AddSuccess" type="redirect">/admin/Topic/qaBackTopic_FindAllTopic.action</result>
+
+        </action>
 
 
     </package>
