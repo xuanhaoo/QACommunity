@@ -13,6 +13,7 @@ public class BaCommToQues {
     Date createDate;
     String accountName;
     BigInteger likes;
+    String headPhoto;
 
 
     public int getCommId() {
@@ -53,6 +54,13 @@ public class BaCommToQues {
 
     public void setLikes(BigInteger likes) {
         this.likes = likes;
+    }
+    public String getHeadPhoto() {
+        return headPhoto;
+    }
+
+    public void setHeadPhoto(String headPhoto) {
+        this.headPhoto = headPhoto;
     }
 
 

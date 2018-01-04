@@ -2,6 +2,7 @@ package com.qa.dao.impl;
 
 import com.qa.dao.FrontUserDao;
 import com.qa.entity.QaFrontUser;
+import com.qa.entity.QaQuestion;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -111,7 +112,6 @@ public class FrontUserDaoImpl implements FrontUserDao {
 
         // 问题集合
         ArrayList l = (ArrayList) query.list();
-
         map.put("list",l);
         map.put("count",count);
         return map;

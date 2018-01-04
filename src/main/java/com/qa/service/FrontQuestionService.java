@@ -1,6 +1,9 @@
 package com.qa.service;
 
-import com.qa.entity.QaComment; /**
+import com.qa.entity.QaComment;
+import com.qa.entity.QaQuestion;
+
+/**
  * Created by InterlliJ IDEA.
  * User:3to
  * Date:18-1-2
@@ -12,4 +15,6 @@ public interface FrontQuestionService {
     Object getCommentById(int id);
 
     boolean addReply(QaComment qaComment);
+
+    public boolean addQues(QaQuestion qaQuestion);
 }

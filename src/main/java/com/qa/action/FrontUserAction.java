@@ -183,7 +183,7 @@ public class FrontUserAction extends BaseAction {
         Integer page = Integer.valueOf(pages);
 
         Map result = frontUserService.getQuestionByUser((Integer) user.get("id"),page);
-        int count = (int) result.get("count");
+        int count = (Integer) result.get("count");
         ArrayList list = (ArrayList) result.get("list");
 
         // 获取值栈对象
@@ -214,7 +214,7 @@ public class FrontUserAction extends BaseAction {
 
         Map session = ActionContext.getContext().getSession();
         Map user = (Map) session.get("frontUser");//获取session
-        id = (int) user.get("id");
+        id = (Integer) user.get("id");
 
 
         String name = request.getParameter("name");
@@ -255,7 +255,7 @@ public class FrontUserAction extends BaseAction {
 
         Map session = ActionContext.getContext().getSession();
         Map user = (Map) session.get("frontUser");//获取session
-        id = (int) user.get("id");
+        id = (Integer) user.get("id");
         password = request.getParameter("password");
         if(password != null){
             password = super.EncoderByMd5(password);
@@ -286,7 +286,7 @@ public class FrontUserAction extends BaseAction {
         // 获取id及密码
         Map session = ActionContext.getContext().getSession();
         Map user = (Map) session.get("frontUser");//获取session
-        id = (int) user.get("id");
+        id = (Integer) user.get("id");
         password = request.getParameter("password");
 
         // 进行密码更新操作
@@ -320,7 +320,7 @@ public class FrontUserAction extends BaseAction {
         // 获取id
         Map session = ActionContext.getContext().getSession();
         Map user = (Map) session.get("frontUser");//获取session
-        id = (int) user.get("id");
+        id = (Integer) user.get("id");
 
         String[] str = { ".jpg", ".gif","png" }; // 限制图片后缀
         if(file == null || file.length()>51200){        // 图片大小不能超过50kb
@@ -383,7 +383,7 @@ public class FrontUserAction extends BaseAction {
         // 获得用户id
         Map session = ActionContext.getContext().getSession();
         Map user = (Map) session.get("frontUser");//获取session
-        id = (int) user.get("id");
+        id = (Integer) user.get("id");
 
         // 只获取该用户的10个最新问题
         Map result = frontUserService.getQuestionByUser(id,1);

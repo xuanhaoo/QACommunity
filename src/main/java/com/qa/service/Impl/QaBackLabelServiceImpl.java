@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Create by xuanhao on 2017/12/10
@@ -121,5 +122,9 @@ public class QaBackLabelServiceImpl implements QaBackLabelService{
      */
     public List getTopicList() {
         return this.qaBackLabelDao.getTopicList();
+    }
+
+    public Map getLabelToTopic(int topicId) {
+        return this.qaBackLabelDao.getLabelToTopic(topicId);
     }
 }

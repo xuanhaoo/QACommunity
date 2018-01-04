@@ -51,7 +51,7 @@ public class SystemLogAspect {
      * @param point
      */
 
-    @AfterReturning(value="AfterPoint()")
+//    @AfterReturning(value="AfterPoint()")
     public void after(JoinPoint point) throws Exception {
         String action;  // 操作方法
         String name;    // 操作人员账户

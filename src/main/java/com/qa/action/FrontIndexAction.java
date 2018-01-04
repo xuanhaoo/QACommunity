@@ -24,24 +24,27 @@ public class FrontIndexAction extends BaseAction{
     @Resource
     private QaBackQuesService qaBackQuesService;
 
-    private Map quesList  = null;
+    private Map quesList  = null;       //问题列表
 
-    private Map theQues = null;
-
-
-    private JSONObject quesComment;
-
-    private Map qaTwoComment = null;
-    private Map topicList = null;
+    private Map theQues = null;         //单个问题
 
 
+    private JSONObject quesComment;         //问题回复的JSON数据
+
+    private Map qaTwoComment = null;        //二级回复
+    private Map topicList = null;           //话题列表
+
+
+    /**
+     * 首页获取，即获取问题页
+     * @return
+     */
     public String getQuestionIndex() {
 
-        //session.setAttribute("frontUser","梁大大");
         Map<String, Object> map = new HashMap<>();
 
-        String page = request.getParameter("page");
-        String orderType = request.getParameter("orderType");
+        String page = request.getParameter("page");     //页码
+        String orderType = request.getParameter("orderType");   //排序方式
 
         quesList = frontIndexService.getQuesIndex(page,orderType);
 
@@ -56,7 +59,7 @@ public class FrontIndexAction extends BaseAction{
      */
     public String getTheQuestion() {
         Map<String, Object> map = new HashMap<>();
-        String quesId_temp = request.getParameter("quesId");
+        String quesId_temp = request.getParameter("quesId");        //问题ID
         int quesid = Integer.parseInt(quesId_temp);
         theQues = frontIndexService.getTheQuesInfo(quesid);
 
@@ -89,6 +92,10 @@ public class FrontIndexAction extends BaseAction{
         return "two_comment";
     }
 
+    /**
+     * 所有的话题查看
+     * @return
+     */
     public String topicIndex() {
         topicList = frontIndexService.getTopicIndex();
         return "topic_index";

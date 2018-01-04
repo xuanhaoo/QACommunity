@@ -105,6 +105,14 @@
                 <param name="root">status</param>
             </result>
             <result name="questionDetail">/question/detail.jsp</result>
+            <result name="addTwoCommentView">/question/addTwoComment.jsp</result>
+            <result name="addQuestionView">/question/addQuestion.jsp</result>
+            <result name="ajaxLabel" type="json">
+                <param name="root">labelList</param>
+            </result>
+            <result name="addQuesResult" type="json">
+                <param name="root">status</param>
+            </result>
         </action>
 
     </package>

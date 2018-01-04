@@ -19,10 +19,26 @@
             <param-value>/admin/login.jsp,/admin/qaBackUser_baLogin.action</param-value>
         </init-param>
     </filter>
-
+    <!--判断后台用户是否登录，admin/下的操作-->
     <filter-mapping>
         <filter-name>QaUserFilter</filter-name>
         <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+
+    <!--判断前台的用户是否登录，针对部分功能-->
+    <filter>
+        <filter-name>FrontUserFilter</filter-name>
+        <filter-class>com.qa.filter.FrontUserFilter</filter-class>
+        <init-param>
+            <!--排除过滤的路径url-->
+            <param-name>excludedPages</param-name>
+            <param-value>/user/login.jsp,/user/register.jsp,/frontUser/FrontUser_checkAccount.action,/frontUser/FrontUser_checkLogin.action,/frontUser/FrontUser_UserLogin.action,/frontUser/FrontUser_registerUser.action,/frontUser/FrontUser_addUser.action</param-value>
+        </init-param>
+    </filter>
+    <!--过滤路径 , /frontUser/下的所有操作-->
+    <filter-mapping>
+        <filter-name>FrontUserFilter</filter-name>
+        <url-pattern>/frontUser/*</url-pattern>
     </filter-mapping>
 
     <!-- struts2容器控制器 -->

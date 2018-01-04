@@ -2,6 +2,7 @@ package com.qa.service.Impl;
 
 import com.qa.dao.FrontQuestionDao;
 import com.qa.entity.QaComment;
+import com.qa.entity.QaQuestion;
 import com.qa.service.FrontQuestionService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,6 +39,11 @@ public class FrontQuestionServiceImpl implements FrontQuestionService {
     @Override
     public boolean addReply(QaComment qaComment) {
         boolean b = frontQustionDao.addReply(qaComment);
+        return b;
+    }
+
+    public boolean addQues(QaQuestion qaQuestion) {
+        boolean b = frontQustionDao.addQues(qaQuestion);
         return b;
     }
 }

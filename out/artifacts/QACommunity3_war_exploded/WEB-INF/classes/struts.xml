@@ -12,6 +12,9 @@
     <!--配置静态资源不过滤-->
     <constant name="struts.action.excludePattern" value="/static/.*?" /><!-- default locale -->
 
+    <!--文件上传临时文件夹-->
+    <!--<constant name="struts.multipart.saveDir" value="/tmp"/>-->
+
     <constant name="struts.i18n.encoding" value="UTF-8" />
     <!--admin包-->
     <package name="admin" namespace="/admin" extends="json-default">
@@ -24,6 +27,136 @@
             <result name="dashboard">/admin/common/layout.jsp</result>
             <result name="userLogin">/admin/login.jsp</result>
         </action>
+        <!--qaBackLabel,后台对标签的管理-->
+        <action name="qaBackLabel_*" class="QaBackLabelAction" method="{1}">
+            <result name="label_list">/admin/label/labelList.jsp</result>
+            <result name="addLabel">/admin/label/addLabel.jsp</result>
+            <result name="updateLabelView">/admin/label/editLabel.jsp</result>
+            <result name="success" type="json">
+                <param name="root">resultJson</param>
+            </result>
+            <!--<result name="input">/admin/label/labelList.jsp</result>-->
+        </action>
+        <!--qaBackQues, 后台对问题的管理-->
+        <action name="qaBackQues_*" class="QaBackQuesAction" method="{1}">
+            <result name="ques_list_view">/admin/question/questionList.jsp</result>
+            <result name="question_list" type="json">
+                <param name="root">quesList</param>
+            </result>
+            <result name="single_question">/admin/question/singleQuestion.jsp</result>
+            <result name="brow_date" type="json">
+                <param name="root">singleQuesInfo</param>
+            </result>
+            <result name="comment_one" type="json">
+                <param name="root">quesComment</param>
+            </result>
+            <result name="comment_two">/admin/question/twoComment.jsp</result>
+            <result name="deleteQues" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="deleteComm" type="json">
+                <param name="root">status</param>
+            </result>
+
+        </action>
+        <!--qaLog, 后台对日志的管理-->
+        <action name="qaLog_*" class="com.qa.action.QaLogAction" method="{1}">
+            <result name="list" type="json">
+                <param name="root">info</param>
+            </result>
+            <result name="delete" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="logList">/admin/logRecord.jsp</result>
+        </action>
+
+        <action name="qaCommunity_*" class="com.qa.action.QaCommunityUserAction" method="{1}">
+            <result name="list" type="json">
+                <param name="root">info</param>
+            </result>
+            <result name="delete" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="update" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="communityList">/admin/community.jsp</result>
+            <result name="editUser">/admin/edit_community.jsp</result>
+        </action>
+
+
     </package>
+
+    <!--前台分类，针对所有的用户（登录与未登录）-->
+    <package name="front" namespace="/front" extends="json-default">
+        <action name="frontIndex_*" class="com.qa.action.FrontIndexAction" method="{1}">
+            <result name="front_index">/front_index.jsp</result>
+            <result name="detail_ques">/detail_ques.jsp</result>
+            <result name="one_comment" type="json">
+                <param name="root">quesComment</param>
+            </result>
+            <result name="two_comment">/two_commentLayer.jsp</result>
+            <result name="topic_index">/topic_index.jsp</result>
+
+        </action>
+
+        <action name="frontQuestion_*" class="com.qa.action.FrontQuestionAction" method="{1}">
+            <result name="questionReply" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="questionDetail">/question/detail.jsp</result>
+            <result name="addTwoCommentView">/question/addTwoComment.jsp</result>
+            <result name="addQuestionView">/question/addQuestion.jsp</result>
+            <result name="ajaxLabel" type="json">
+                <param name="root">labelList</param>
+            </result>
+            <result name="addQuesResult" type="json">
+                <param name="root">status</param>
+            </result>
+        </action>
+
+    </package>
+
+
+    <!--前台用户登录后，进行的一系列操作， 过滤验证配置见 web.xml-->
+    <package name="frontUser" namespace="/frontUser" extends="json-default">
+
+        <!--前台用户管理-->
+        <action name="FrontUser_*" class="com.qa.action.FrontUserAction" method="{1}">
+            <result name="checkAccount" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="addUser" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="register">/user/register.jsp</result>
+            <result name="checkLogin" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="logout" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="userUpdate" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="checkPass" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="userPass" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="uploadPhoto" type="json">
+                <param name="root">status</param>
+            </result>
+            <result name="login">/user/login.jsp</result>
+            <result name="userIndex">/user/index.jsp</result>
+            <result name="userHome">/user/home.jsp</result>
+            <result name="userSet">/user/set.jsp</result>
+        </action>
+
+    </package>
+
+
+
 
 </struts>

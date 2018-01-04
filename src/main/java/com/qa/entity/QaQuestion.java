@@ -20,11 +20,11 @@ public class QaQuestion {
 
     @Id
     @Column(name = "q_id", nullable = false)
-    public int getqId() {
+    public int getQId() {
         return qId;
     }
 
-    public void setqId(int qId) {
+    public void setQId(int qId) {
         this.qId = qId;
     }
 

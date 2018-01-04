@@ -173,6 +173,7 @@ public class QaBackQuesServiceImpl implements QaBackQuesService{
             bct.setCreateDate((Date) object[2]);
             bct.setAccountName((String) object[3]);
             bct.setLikes((BigInteger) object[4]);
+            bct.setHeadPhoto((String)object[5]);
 
             baCommToQuesList.add(bct);
 
@@ -201,6 +202,7 @@ public class QaBackQuesServiceImpl implements QaBackQuesService{
             bbt.setCreateDate((Date) object[2]);
             bbt.setAccountName((String) object[3]);
             bbt.setLikes((BigInteger) object[4]);
+            bbt.setHeadPhoto((String)object[5]);
 
             baCommToQuesList.add(bbt);
         }

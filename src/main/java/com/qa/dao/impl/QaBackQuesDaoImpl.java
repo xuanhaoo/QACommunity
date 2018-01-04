@@ -168,7 +168,7 @@ public class QaBackQuesDaoImpl implements QaBackQuesDao{
     public Map getTheComment(int q_id) {
         Map map = new HashMap();
         //同样原生sql，需要左连接，因为当评论没有赞的时候一样要查询出来
-        String sql = "select t1.c_id as commId,t1.content as content,t1.create_date as createDate,t2.name as accountName,count(t3.id) likes from qa_comment as t1" +
+        String sql = "select t1.c_id as commId,t1.content as content,t1.create_date as createDate,t2.name as accountName,count(t3.id) likes,t2.photo as hphoto from qa_comment as t1" +
                 " left join qa_front_user t2 on t1.create_user=t2.id" +
                 " left join qa_likes t3 on t1.c_id = t3.c_id" +
                 " where t1.c_pid is null and t1.question_id="+q_id+" GROUP BY t1.c_id";
@@ -186,7 +186,7 @@ public class QaBackQuesDaoImpl implements QaBackQuesDao{
      */
     public Map getTheComment_two(int pq_id) {
         Map map = new HashMap();
-        String sql = "select t1.c_id as commId,t1.content as content,t1.create_date as createDate,t2.name as accountName,count(t3.id) likes from qa_comment as t1" +
+        String sql = "select t1.c_id as commId,t1.content as content,t1.create_date as createDate,t2.name as accountName,count(t3.id) likes,t2.photo as hphoto from qa_comment as t1" +
                 " left join qa_front_user t2 on t1.create_user=t2.id" +
                 " left join qa_likes t3 on t1.c_id = t3.c_id" +
                 " where t1.c_pid="+pq_id+" group by t1.c_id";

@@ -19,6 +19,8 @@
           <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:3.1.1.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-orm:3.1.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.7.4" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.7.4" />
           <element id="library" level="project" name="Maven: cglib:cglib-nodep:2.1_3" />
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-core:3.6.5.Final" />
           <element id="library" level="project" name="Maven: antlr:antlr:2.7.6" />

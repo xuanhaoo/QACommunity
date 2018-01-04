@@ -4,6 +4,7 @@ import com.qa.entity.QaLabel;
 import com.qa.entity.QaTopic;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Create by xuanhao on 2017/12/10
@@ -54,5 +55,7 @@ public interface QaBackLabelDao {
      * @return
      */
     public List getTopicList();
+
+    public Map getLabelToTopic(int topicId);
 
 }

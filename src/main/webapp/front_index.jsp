@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.Map" %><%--
   Created by IntelliJ IDEA.
   User: Mr.liang
   Date: 2017/12/28
@@ -13,7 +13,7 @@
 
 %>
 <%
-    String frontUser = (String) session.getAttribute("frontUser");
+    Map frontUser = (Map) session.getAttribute("frontUser");
 %>
 <%--<s:iterator value="quesList.quesLists" var="qq">--%>
     <%--<s:property value="#qq.quesTitle"></s:property>--%>
@@ -52,40 +52,37 @@
         <ul class="layui-nav fly-nav-user">
 
             <% if(frontUser != null){ %>
-            <!-- 登入的状态 -->
+                <!-- 登入的状态 -->
             <li class="layui-nav-item">
                 <a class="fly-nav-avatar" href="javascript:;">
-                    <cite class="layui-hide-xs">贤心</cite>
-                    <i class="iconfont icon-renzheng layui-hide-xs" title="认证信息：layui 作者"></i>
-                    <i class="layui-badge fly-badge-vip layui-hide-xs">VIP3</i>
-                    <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg">
+                    <cite class="layui-hide-xs"><%=frontUser.get("name")%></cite>
+                    <img src="<%=basePath%>/<%=frontUser.get("photo")%>">
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="user/set.html"><i class="layui-icon">&#xe620;</i>基本设置</a></dd>
-                    <dd><a href="user/message.html"><i class="iconfont icon-tongzhi" style="top: 4px;"></i>我的消息</a></dd>
-                    <dd><a href="user/home.html"><i class="layui-icon" style="margin-left: 2px; font-size: 22px;">&#xe68e;</i>我的主页</a></dd>
+                    <dd><a href="<%=basePath %>/frontUser/FrontUser_userSet.action"><i class="layui-icon">&#xe620;</i>基本设置</a></dd>
+                    <dd><a href="<%=basePath %>/frontUser/FrontUser_userHome.action"><i class="layui-icon" style="margin-left: 2px; font-size: 22px;">&#xe68e;</i>我的主页</a></dd>
                     <hr style="margin: 5px 0;">
-                    <dd><a href="/user/logout/" style="text-align: center;">退出</a></dd>
+                    <dd id="logout"><a style="text-align: center;">退出</a></dd>
                 </dl>
             </li>
-            <% }else {%>
+            <% }else { %>
             <!-- 未登入的状态 -->
             <li class="layui-nav-item">
-                <a class="iconfont icon-touxiang layui-hide-xs" href="user/login.html"></a>
+                <a class="iconfont icon-touxiang layui-hide-xs" href="<%=path %>/frontUser/FrontUser_UserLogin.action"></a>
             </li>
             <li class="layui-nav-item">
-                <a href="user/login.html" class="layui-btn layui-btn-sm login-btn" style="background: #5dade2; color:#fff;">登录</a>
+                <a href="<%=path %>/frontUser/FrontUser_UserLogin.action" class="layui-btn layui-btn-sm login-btn" style="background: #5dade2; color:#fff;">登录</a>
             </li>
             <li class="layui-nav-item">
-                <a href="user/reg.html" class="layui-btn  layui-btn-sm regist-btn" style="margin-left: 9px;background: #1abc9c;color:#fff;">注册</a>
+                <a href="<%=path %>/frontUser/FrontUser_registerUser.action" class="layui-btn  layui-btn-sm regist-btn" style="margin-left: 9px;background: #1abc9c;color:#fff;">注册</a>
             </li>
             <li class="layui-nav-item layui-hide-xs">
-                <a href="/app/qq/" onclick="layer.msg('正在通过QQ登入', {icon:16, shade: 0.1, time:0})" title="QQ登入" class="iconfont icon-qq"></a>
+                <a href="#" onclick="layer.msg('还未获得腾讯许可', {icon:16, shade: 0.1, time:0})" title="QQ登入" class="iconfont icon-qq"></a>
             </li>
             <li class="layui-nav-item layui-hide-xs">
-                <a href="/app/weibo/" onclick="layer.msg('正在通过微博登入', {icon:16, shade: 0.1, time:0})" title="微博登入" class="iconfont icon-weibo"></a>
+                <a href="#" onclick="layer.msg('还未获得新浪许可', {icon:16, shade: 0.1, time:0})" title="微博登入" class="iconfont icon-weibo"></a>
             </li>
-            <% }%>
+            <% } %>
         </ul>
     </div>
 </div>
@@ -117,7 +114,7 @@
                       <s:iterator value="quesList.quesLists" var="qq">
                           <li>
                               <a href="user/home.html" class="fly-avatar">
-                                  <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" alt="贤心">
+                                  <img src="<%=basePath %>/<s:property value="#qq.headPhoto" />" alt="">
                               </a>
                               <h2>
                                   <a class="layui-badge"><s:property value="#qq.topicName"></s:property></a>
@@ -258,11 +255,12 @@
 <script src="<%=basePath %>/static/plugins/js/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src="<%=basePath%>/static/plugins/layui/layui.js"></script>
 <script>
-    layui.use(['laydate','laypage','laytpl','layer'], function() {
+    layui.use(['laydate','laypage','laytpl','layer','element'], function() {
         var laypage = layui.laypage;
         var laydate = layui.laydate;
         var laytpl = layui.laytpl;
         var layer = layui.layer;
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
 
 
         var orderCode = "<s:property value="quesList.orderType" />";   //定义排序代号
@@ -295,9 +293,33 @@
             }
         });
 
+        /**
+         * 查看问题详情
+         */
         $(".quesDetail").on('click', function() {
             var quesId = $(this).data("id");
             window.location.href = "<%=basePath %>/front/frontIndex_getTheQuestion?quesId="+quesId;
+        });
+
+        $("#logout").on("click",function(){
+            layer.confirm('确认退出？', {
+                btn: ['确认', '取消'] //按钮
+            }, function () {
+                $.ajax({
+                    url: "<%=path%>/frontUser/FrontUser_userLogout.action",
+                    type: "POST",
+                    success: function (data2) {
+                        if (data2 === "1") {
+                            layer.msg("退出成功!", {time: 1000, icon: 1}, function () {location.reload();});
+                        } else {
+                            layer.msg("退出失败!", {time: 1000, icon: 2},function () {location.reload();});
+                        }
+                    },
+                    error: function () {
+                        layer.msg('请求服务器超时', {time: 1000, icon: 2},function () {location.reload();});
+                    }
+                });
+            });
         });
     });
 </script>

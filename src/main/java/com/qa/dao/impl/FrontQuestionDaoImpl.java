@@ -2,6 +2,7 @@ package com.qa.dao.impl;
 
 import com.qa.dao.FrontQuestionDao;
 import com.qa.entity.QaComment;
+import com.qa.entity.QaQuestion;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -50,7 +51,7 @@ public class FrontQuestionDaoImpl implements FrontQuestionDao{
     public Object getCommentById(int id) {
 
         // 查询回复的id, 查询回复的内容， 回复的创建时间， 用户的id， 用户的名称， 用户的性别， 用户的头像
-        String hql = "select t1.c_id as commentId, t1.content as commentContent, t1.pid as commentParent, t1.create_date as commentCreateDate, " +
+        String hql = "select t1.c_id as commentId, t1.content as commentContent, t1.c_pid as commentParent, t1.create_date as commentCreateDate, " +
                 "t2.id as userId, t2.name as userName, t2.sex as userSex, t2.photo as userPhoto " +
                 "from qa_comment as t1, qa_front_user as t2 " +
                 "where t1.question_id = ? and t1.create_user = t2.id";
@@ -75,6 +76,19 @@ public class FrontQuestionDaoImpl implements FrontQuestionDao{
     @Override
     public boolean addReply(QaComment qaComment) {
         Serializable i = sessionFactory.getCurrentSession().save(qaComment);
+        if(i != null){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 添加问题
+     * @param qaQuestion
+     * @return
+     */
+    public boolean addQues(QaQuestion qaQuestion) {
+        Serializable i = sessionFactory.getCurrentSession().save(qaQuestion);
         if(i != null){
             return true;
         }

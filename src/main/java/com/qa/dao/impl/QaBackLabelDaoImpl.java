@@ -3,13 +3,17 @@ package com.qa.dao.impl;
 import com.qa.dao.QaBackLabelDao;
 import com.qa.entity.QaLabel;
 import com.qa.entity.QaTopic;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import com.qa.entity.BaTopicToLabel;
 
 /**
@@ -116,5 +120,16 @@ public class QaBackLabelDaoImpl implements QaBackLabelDao{
      */
     public List getTopicList() {
         return sessionFactory.getCurrentSession().createQuery("FROM QaTopic order by sorted asc").list();
+    }
+
+    public Map getLabelToTopic(int topicId) {
+        Map map = new HashMap();
+        String hql = "FROM QaLabel where topicId = ?";
+        Query query =   sessionFactory.getCurrentSession().createQuery(hql);
+        query.setInteger(0,topicId);
+        List list = query.list();
+        map.put("labelList", list);
+        return map;
+
     }
 }
