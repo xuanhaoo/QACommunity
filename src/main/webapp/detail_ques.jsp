@@ -42,6 +42,9 @@
     </style>
 </head>
 <body>
+
+<%--隐藏域，判断session--%>
+<input type="hidden" id="sessionjudge" value="<%=frontUser%>">
 <%--header部分--%>
 <div class="fly-header layui-bg-cyan">
     <div class="layui-container">
@@ -373,10 +376,9 @@
          * 对单个评论进行回复添加
          */
         $(document).on('click', '.addTheComm', function() {
-            var front = null;
-            front = <%=frontUser.get("id")%>;
+            var front = $('#sessionjudge').val();  //获取隐藏域的session
             //判断是否已经登录
-            if(front != null) {
+            if(front != "") {
                 var commId = $(this).data("id");
                 var addtwo_commentUrl = "<%=path%>/front/frontQuestion_addTwoCommentView.action?cPid="+commId+"&quesId="+quesId;
                 layer.open({
