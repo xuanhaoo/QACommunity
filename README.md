@@ -2,4 +2,4 @@
 QA问答社区
 
 ###### 首页
-![](QACommunity/img/index.png)
+![社区首页](https://github.com/xuanhaoo/QACommunity/blob/master/img/index.png)
