@@ -15,7 +15,7 @@ import java.util.Map;
 import net.sf.json.JSONObject;
 
 /**
- * Create by xuanhao on 2017/11/30
+ * 后台用户登录
  */
 
 @Controller("QaBackUserAction")

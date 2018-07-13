@@ -16,10 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by InterlliJ IDEA.
- * User:3to
- * Date:17-12-11
- * Time:上午10:53
+ *
  */
 // 进行注入
 @Repository("QaLogRecordDao")
@@ -31,8 +28,7 @@ public class QaLogRecordDaoImpl implements QaLogRecordDao {
 
 
     /**
-     * 创建时间：17-12-11 上午10:59
-     * 作者：3to
+     *
      * 描述：根据传递过来的logRecord实体,将其添加到数据库中
     */
     @Override
@@ -45,8 +41,7 @@ public class QaLogRecordDaoImpl implements QaLogRecordDao {
     }
 
     /**
-     * 创建时间：17-12-11 下午4:46
-     * 作者：3to
+     *
      * 描述：根据id集合,删除日志信息
     */
     @Override
@@ -63,8 +58,7 @@ public class QaLogRecordDaoImpl implements QaLogRecordDao {
     }
 
     /**
-     * 创建时间：17-12-11 下午4:53
-     * 作者：3to
+     *
      * 描述：根据传入的条件集合,进行日志查找
     */
     @Override

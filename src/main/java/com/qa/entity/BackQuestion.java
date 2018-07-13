@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Create by xuanhao on 2017/12/13
+ *
  */
 public class BackQuestion {
     private int quesId;

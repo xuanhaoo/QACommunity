@@ -12,10 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Create by xuanhao on 2017/12/28
- */
-
-/**
  * 前台数据库交互层
  */
 @Transactional(rollbackFor = Exception.class)//出现Exception异常回滚
@@ -61,7 +57,7 @@ public class FrontIndexDaoImpl implements FrontIndexDao {
         List list = query.list();
         count = list.size();
         firstRe = pages * limit;   //当前该显示的记录开始点
-        lastRe = page * limit + limit;      //结束的点
+        lastRe = pages  * limit + limit;      //结束的点
         query.setFirstResult(firstRe);
         query.setMaxResults(lastRe);
         map.put("count", count);

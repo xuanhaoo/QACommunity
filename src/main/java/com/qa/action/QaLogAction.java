@@ -13,10 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by InterlliJ IDEA.
- * User:3to
- * Date:17-12-12
- * Time:下午1:26
+ * 日志记录
  */
 
 @Controller("LogAction")
@@ -31,8 +28,7 @@ public class QaLogAction extends BaseAction {
 
 
     /**
-     * 创建时间：17-12-12 下午1:39
-     * 作者：3to
+     *
      * 描述： 返回日志列表
     */
     public String logList(){
@@ -40,8 +36,7 @@ public class QaLogAction extends BaseAction {
     }
 
     /**
-     * 创建时间：17-12-12 下午3:34
-     * 作者：3to
+     *
      * 描述： 通过ajax请求,返回json数据
     */
     public String getList(){
@@ -83,8 +78,7 @@ public class QaLogAction extends BaseAction {
 
 
     /**
-     * 创建时间：17-12-14 下午3:52
-     * 作者：3to
+     *
      * 描述： 通过ajax请求,进行数据删除
     */
     public String deleteList(){

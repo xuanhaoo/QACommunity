@@ -158,7 +158,7 @@
                 ,{field: 'quesTitle', title: '问题标题',  sort: true, align:'center',width: $(document).width()*0.12}
                 ,{field: 'quesDetail', title: '详细内容', align:'center',width: $(document).width()*0.3}
                 ,{field: 'topicName', title: '所属话题', sort: true, align:'center',width: $(document).width()*0.1}
-                ,{field: 'labels', title: '', templet:"#labelsTpl", align:'center',width: $(document).width()*0.2}
+                ,{field: 'labels', title: '标签', templet:"#labelsTpl", align:'center',width: $(document).width()*0.2}
                 ,{field: 'createDate', title: '时间', sort: true, templet:'#timeTpl',align:'center', width: $(document).width()*0.2} //指定tpl模板
                 ,{field: 'account', title: '创建账号', sort: true, align:'center',width: $(document).width()*0.15}
                 ,{field: 'accountName', title: '用户昵称', align:'center',width: $(document).width()*0.15}

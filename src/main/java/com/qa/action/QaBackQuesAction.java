@@ -18,10 +18,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Create by xuanhao on 2017/12/13
+ * Create by xuanhao on 2018/5/4
  */
 @Controller("QaBackQuesAction")
-@Scope("prototype")
+@Scope("prototype") //作用域，prototype指每次请求都创建一个实例
 public class QaBackQuesAction extends BaseAction implements ModelDriven<QaQuestion>{
     @Resource
     private QaBackQuesService qaBackQuesService;

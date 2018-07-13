@@ -17,7 +17,7 @@ import java.util.*;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 
 /**
- * Create by xuanhao on 2017/12/10
+ * Create by xuanhao on 2018/5/4
  */
 @Controller("QaBackLabelAction")
 @Scope("prototype")

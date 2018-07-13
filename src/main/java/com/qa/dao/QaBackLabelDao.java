@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Create by xuanhao on 2017/12/10
+ *
  * 标签dao
  */
 public interface QaBackLabelDao {

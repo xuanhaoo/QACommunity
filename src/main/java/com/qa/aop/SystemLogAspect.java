@@ -1,10 +1,7 @@
 package com.qa.aop;
 
 /**
- * Created by InterlliJ IDEA.
- * User:3to
- * Date:17-12-10
- * Time:下午2:04
+ *切面类
  */
 
 
@@ -122,8 +119,7 @@ public class SystemLogAspect {
     }
 
     /**
-     * 创建时间：17-12-10
-     * 作者：3to
+     *
      * 参数：@param null
      * 描述：获取请求客户端的ip地址
     */

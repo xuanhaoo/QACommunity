@@ -6,10 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by InterlliJ IDEA.
- * User:3to
- * Date:17-12-23
- * Time:下午1:36
+ *
  */
 public interface QaCommunityUserDao {
 

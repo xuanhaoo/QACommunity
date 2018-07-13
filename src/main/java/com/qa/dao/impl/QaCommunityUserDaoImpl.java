@@ -15,10 +15,7 @@ import java.util.Map;
 
 
 /**
- * Created by InterlliJ IDEA.
- * User:3to
- * Date:17-12-23
- * Time:下午1:37
+ *
  */
 
 @Repository("QaCommunityUserDao")
@@ -28,8 +25,6 @@ public class QaCommunityUserDaoImpl implements QaCommunityUserDao {
     private SessionFactory sessionFactory;
 
     /**
-     * 创建时间：17-12-26 上午10:06
-     * 作者：3to
      * 描述： 获得前台用户列表
     */
     @Override
@@ -101,8 +96,7 @@ public class QaCommunityUserDaoImpl implements QaCommunityUserDao {
 
 
     /**
-     * 创建时间：17-12-26 上午11:43
-     * 作者：3to
+     *
      * 描述： 删除用户集合
     */
     @Override
@@ -120,8 +114,7 @@ public class QaCommunityUserDaoImpl implements QaCommunityUserDao {
 
 
     /**
-     * 创建时间：17-12-26 下午1:56
-     * 作者：3to
+     *
      * 描述： 更新用户信息
     */
     @Override

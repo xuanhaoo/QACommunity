@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * Create by xuanhao on 2017/12/13
+ *
  */
 @Transactional(rollbackFor = Exception.class)//出现Exception异常回滚
 @Repository("QaBackQuesDao") //注入
@@ -23,7 +23,7 @@ public class QaBackQuesDaoImpl implements QaBackQuesDao{
     private SessionFactory sessionFactory;
 
     /**
-     * 作者：xuanhao
+     *
      * 后台某些功能如添加或编辑不需要，暂时不写
      * 添加问题功能在前台写
      * @param qaQuestion

@@ -11,10 +11,7 @@ import javax.annotation.Resource;
 import java.io.Serializable;
 
 /**
- * Created by InterlliJ IDEA.
- * User:3to
- * Date:18-1-2
- * Time:下午9:37
+ *
  */
 
 @Repository("FrontQuestionDao")
@@ -25,8 +22,7 @@ public class FrontQuestionDaoImpl implements FrontQuestionDao{
 
 
     /**
-     * 创建时间：18-1-3 上午12:26
-     * 作者：3to
+     *
      * 描述： 根据问题id获取问题详情及用户信息
     */
     @Override
@@ -43,8 +39,7 @@ public class FrontQuestionDaoImpl implements FrontQuestionDao{
     }
 
     /**
-     * 创建时间：18-1-3 上午12:26
-     * 作者：3to
+     *
      * 描述： 根据问题id获取回复信息
     */
     @Override
@@ -69,8 +64,7 @@ public class FrontQuestionDaoImpl implements FrontQuestionDao{
 
 
     /**
-     * 创建时间：18-1-4 上午12:16
-     * 作者：3to
+     *
      * 描述： 添加消息回复
     */
     @Override

@@ -6,7 +6,7 @@ import com.qa.entity.QaBackUser;
 import java.util.List;
 
 /**
- *  Create by xuanhao on 2017-11-30
+ *
  */
 public interface QaBackUserDao {
 

@@ -12,7 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Create by xuanhao on 2017/11/30
+ *
  */
 @Transactional(rollbackFor = Exception.class)//出现Exception异常回滚
 @Repository("QaBackUserDao")  //进行注入

@@ -6,10 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by InterlliJ IDEA.
- * User:3to
- * Date:17-12-31
- * Time:下午9:47
+ *
  */
 public interface FrontUserDao {
     boolean checkAccount(String name);

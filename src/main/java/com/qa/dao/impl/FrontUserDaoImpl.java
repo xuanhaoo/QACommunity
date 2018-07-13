@@ -12,10 +12,7 @@ import java.io.Serializable;
 import java.util.*;
 
 /**
- * Created by InterlliJ IDEA.
- * User:3to
- * Date:17-12-31
- * Time:下午9:48
+ *
  */
 @Repository("FrontUserDao")
 public class FrontUserDaoImpl implements FrontUserDao {
@@ -24,8 +21,7 @@ public class FrontUserDaoImpl implements FrontUserDao {
     private SessionFactory sessionFactory;
 
     /**
-     * 创建时间：17-12-31 下午9:50
-     * 作者：3to
+     *
      * 描述： 检查账户是否已经存在
     */
     @Override
@@ -43,8 +39,7 @@ public class FrontUserDaoImpl implements FrontUserDao {
 
 
     /**
-     * 创建时间：17-12-31 下午3:09
-     * 作者：3to
+     *
      * 描述： 注册新用户
     */
     @Override
@@ -58,8 +53,7 @@ public class FrontUserDaoImpl implements FrontUserDao {
     }
 
     /**
-     * 创建时间：17-12-31 下午4:51
-     * 作者：3to
+     *
      * 描述： 检查用户登录
     */
     @Override
@@ -82,8 +76,7 @@ public class FrontUserDaoImpl implements FrontUserDao {
     }
 
     /**
-     * 创建时间：17-12-31 下午4:52
-     * 作者：3to
+     *
      * 描述： 根据用户id获得相关的问题
     */
     @Override
@@ -119,8 +112,7 @@ public class FrontUserDaoImpl implements FrontUserDao {
 
 
     /**
-     * 创建时间：18-1-1 下午9:55
-     * 作者：3to
+     *
      * 描述： 更新用户基本信息
     */
     @Override
@@ -143,8 +135,7 @@ public class FrontUserDaoImpl implements FrontUserDao {
     }
 
     /**
-     * 创建时间：18-1-1 下午9:56
-     * 作者：3to
+     *
      * 描述： 检查用户原密码是否正确
     */
     @Override
@@ -163,8 +154,7 @@ public class FrontUserDaoImpl implements FrontUserDao {
 
 
     /**
-     * 创建时间：18-1-1 下午9:56
-     * 作者：3to
+     *
      * 描述： 更新用户密码
     */
     @Override
@@ -183,8 +173,7 @@ public class FrontUserDaoImpl implements FrontUserDao {
 
 
     /**
-     * 创建时间：18-1-2 下午2:19
-     * 作者：3to
+     *
      * 描述： 更新用户头像
     */
     @Override
@@ -205,8 +194,7 @@ public class FrontUserDaoImpl implements FrontUserDao {
 
 
     /**
-     * 创建时间：18-1-2 下午3:16
-     * 作者：3to
+     *
      * 描述： 根据用户id获取最新评论信息
     */
     @Override

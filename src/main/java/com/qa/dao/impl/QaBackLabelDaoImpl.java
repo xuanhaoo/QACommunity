@@ -17,7 +17,7 @@ import java.util.Map;
 import com.qa.entity.BaTopicToLabel;
 
 /**
- * Create by xuanhao on 2017/12/10
+ *
  */
 @Transactional(rollbackFor = Exception.class)//出现Exception异常回滚
 @Repository("QaBackLabelDao") //注入
@@ -27,7 +27,7 @@ public class QaBackLabelDaoImpl implements QaBackLabelDao{
     private SessionFactory sessionFactory;
 
     /**
-     * 作者 xuanhao  ,下同
+     *
      * 添加标签信息
      * @param qaLabel
      * @return boolean
@@ -46,7 +46,7 @@ public class QaBackLabelDaoImpl implements QaBackLabelDao{
     }
 
     /**
-     * 作者： xuanhao
+     *
      * 更新标签
      * @param qaLabel
      * @return
@@ -64,7 +64,7 @@ public class QaBackLabelDaoImpl implements QaBackLabelDao{
     }
 
     /**
-     * 作者： xuanhao
+     *
      * 删除标签
      * @param l_id  标签id
      * @return

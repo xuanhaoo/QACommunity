@@ -16,10 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by InterlliJ IDEA.
- * User:3to
- * Date:17-12-19
- * Time:下午5:16
+ * 社区用户主页
  */
 
 @Controller("CommunityUserAction")
@@ -38,8 +35,7 @@ public class QaCommunityUserAction extends BaseAction {
     }
 
     /**
-     * 创建时间：17-12-26 下午2:17
-     * 作者：3to
+     *
      * 描述： 根据id获得用户信息
     */
     public String editUser() throws Exception{
@@ -53,8 +49,7 @@ public class QaCommunityUserAction extends BaseAction {
 
 
     /**
-     * 创建时间：17-12-23 下午1:44
-     * 作者：3to
+     *
      * 描述： 获取社区用户列表
     */
     public String getCommunityList(){
@@ -110,8 +105,7 @@ public class QaCommunityUserAction extends BaseAction {
 
 
     /**
-     * 创建时间：17-12-26 上午11:38
-     * 作者：3to
+     *
      * 描述： 删除用户集合
     */
     public String delComUser(){
@@ -144,8 +138,7 @@ public class QaCommunityUserAction extends BaseAction {
 
 
     /**updateUser
-     * 创建时间：17-12-26 下午1:54
-     * 作者：3to
+     *
      * 描述： 更新用户信息
     */
     public String updateComUser(){

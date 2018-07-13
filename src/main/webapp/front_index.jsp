@@ -103,7 +103,7 @@
                     <%--<span class="fly-mid"></span>--%>
                     <%--<a href="">精华</a>--%>
                     <span class="fly-filter-right layui-hide-xs">
-                        <a href="javascript:;" class="layui-this" id="byNew">按最新</a>
+                        <a href="javascript:;" class="" id="byNew">按最新</a>
                         <span class="fly-mid"></span>
                         <a href="javascript:;" id="byHot" class="">按热议</a>
                     </span>
@@ -265,12 +265,19 @@
 
         var orderCode = "<s:property value="quesList.orderType" />";   //定义排序代号
 
+        if(orderCode == 1) {
+            $("#byNew").addClass("layui-this");
+        }else if(orderCode == 2) {
+            $("#byHot").addClass("layui-this");
+        }else {
+            $("#byNew").addClass("layui-this");
+        }
+
         $("#byNew").on('click', function() {
             orderCode = 1;
             window.location.href = "<%=basePath %>/front/frontIndex_getQuestionIndex?page=1&orderType="+orderCode;
         });
         $("#byHot").on('click', function() {
-
             orderCode = 2;
             window.location.href = "<%=basePath %>/front/frontIndex_getQuestionIndex?page=1&orderType="+orderCode;
         });

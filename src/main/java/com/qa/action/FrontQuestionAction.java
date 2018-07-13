@@ -21,10 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by InterlliJ IDEA.
- * User:3to
- * Date:18-1-2
- * Time:下午9:32
+ * 前台社区问题控制器
  */
 
 @Controller("FrontQuestionAction")
@@ -44,8 +41,7 @@ public class FrontQuestionAction extends BaseAction {
 
 
     /**
-     * 创建时间：18-1-2 下午9:39
-     * 作者：3to
+     *
      * 描述： 问题详情
     */
     public String questionDetail(){
@@ -93,8 +89,7 @@ public class FrontQuestionAction extends BaseAction {
     }
 
     /**
-     * 创建时间：18-1-3 下午5:08
-     * 作者：3to
+     *
      * 描述： 回复问题
     */
     public String questionReply(){
